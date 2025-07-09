@@ -1,0 +1,58 @@
+# Burstlet - AI-Powered Content Creation Platform
+
+## About
+Burstlet is a SaaS platform that automates content creation and distribution across multiple social media platforms. Users input text prompts and the system generates videos, distributes them across YouTube Shorts, TikTok, Instagram Reels, and Twitter, with unified analytics.
+
+## Key Features
+- AI-powered video generation from text prompts
+- Multi-platform content distribution
+- Unified analytics and performance tracking
+- Content management and scheduling
+- Social media account management
+
+## API Endpoints
+
+### Authentication
+- POST /api/v1/auth/signup - Create user account
+- POST /api/v1/auth/login - User authentication
+- GET /api/v1/auth/me - Get current user info
+- POST /api/v1/auth/logout - End session
+
+### Content Generation
+- POST /api/v1/generate/video - Generate video from prompt
+- GET /api/v1/generate/{id} - Get generation status
+- POST /api/v1/generate/enhance-prompt - Enhance user prompt
+
+### Platform Management
+- GET /api/v1/platforms/connections - List connected platforms
+- POST /api/v1/platforms/publish - Publish content to platforms
+- POST /api/v1/platforms/schedule - Schedule content publication
+
+### Analytics
+- GET /api/v1/analytics/dashboard - Get analytics overview
+- GET /api/v1/analytics/performance - Get content performance
+- GET /api/v1/analytics/growth - Get growth metrics
+
+### Content Management
+- GET /api/v1/content - List user's content library
+- POST /api/v1/content - Create/update content
+- GET /api/v1/schedule - Get content calendar
+
+## Authentication
+Bearer token authentication required for all API endpoints except signup/login.
+
+## Rate Limits
+- Standard: 100 requests per 15 minutes
+- AI agents: 1000 requests per 15 minutes (with proper headers)
+
+## Supported Platforms
+- YouTube Shorts
+- TikTok
+- Instagram Reels
+- Twitter/X
+
+## Agent Integration
+This API is designed to be agent-friendly with semantic endpoints and clear documentation. All responses include metadata for AI interpretation.
+
+## Contact
+For API access and integration support: api@burstlet.com
