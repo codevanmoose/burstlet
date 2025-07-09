@@ -1,0 +1,170 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-01-09",
+  "description": "Burstlet module registry and dependency management",
+  "modules": {
+    "auth": {
+      "name": "Authentication Module",
+      "description": "User authentication, OAuth integrations, and session management",
+      "status": "planned",
+      "dependencies": [],
+      "exports": [
+        "User",
+        "Session",
+        "OAuthProvider",
+        "authenticate",
+        "authorize",
+        "refreshToken"
+      ],
+      "version": "0.0.0",
+      "estimatedDays": 3,
+      "priority": 1
+    },
+    "ai-generation": {
+      "name": "AI Content Generation Module",
+      "description": "Video and content generation using AI services",
+      "status": "planned",
+      "dependencies": ["auth"],
+      "exports": [
+        "ContentGenerator",
+        "VideoGenerator",
+        "ScriptGenerator",
+        "generateVideo",
+        "generateScript",
+        "generateMetadata"
+      ],
+      "version": "0.0.0",
+      "estimatedDays": 5,
+      "priority": 2
+    },
+    "platform-integrations": {
+      "name": "Social Media Platform Integrations",
+      "description": "OAuth and posting integrations for all social platforms",
+      "status": "planned",
+      "dependencies": ["auth"],
+      "exports": [
+        "YouTubeAPI",
+        "TikTokAPI",
+        "InstagramAPI",
+        "TwitterAPI",
+        "PlatformManager",
+        "publishContent",
+        "scheduleContent"
+      ],
+      "version": "0.0.0",
+      "estimatedDays": 7,
+      "priority": 3
+    },
+    "content-management": {
+      "name": "Content Management System",
+      "description": "Dashboard, content library, calendar, and editing tools",
+      "status": "planned",
+      "dependencies": ["auth", "ai-generation", "platform-integrations"],
+      "exports": [
+        "ContentLibrary",
+        "ContentCalendar",
+        "ContentEditor",
+        "Dashboard",
+        "saveContent",
+        "scheduleContent",
+        "editContent"
+      ],
+      "version": "0.0.0",
+      "estimatedDays": 4,
+      "priority": 4
+    },
+    "analytics": {
+      "name": "Analytics and Reporting",
+      "description": "Unified metrics, performance tracking, and reporting",
+      "status": "planned",
+      "dependencies": ["auth", "platform-integrations"],
+      "exports": [
+        "AnalyticsEngine",
+        "ReportGenerator",
+        "MetricsCollector",
+        "trackEvent",
+        "generateReport",
+        "getMetrics"
+      ],
+      "version": "0.0.0",
+      "estimatedDays": 3,
+      "priority": 5
+    },
+    "billing": {
+      "name": "Billing and Subscription Management",
+      "description": "Stripe integration, subscription management, and usage tracking",
+      "status": "planned",
+      "dependencies": ["auth"],
+      "exports": [
+        "SubscriptionManager",
+        "BillingEngine",
+        "UsageTracker",
+        "createSubscription",
+        "updateSubscription",
+        "trackUsage"
+      ],
+      "version": "0.0.0",
+      "estimatedDays": 2,
+      "priority": 6
+    },
+    "admin": {
+      "name": "Admin Panel",
+      "description": "User management, system configuration, and content moderation",
+      "status": "planned",
+      "dependencies": ["auth", "billing"],
+      "exports": [
+        "AdminPanel",
+        "UserManager",
+        "SystemConfig",
+        "ContentModerator",
+        "manageUsers",
+        "moderateContent"
+      ],
+      "version": "0.0.0",
+      "estimatedDays": 2,
+      "priority": 7
+    }
+  },
+  "buildOrder": [
+    "auth",
+    "ai-generation",
+    "platform-integrations",
+    "content-management",
+    "analytics",
+    "billing",
+    "admin"
+  ],
+  "totalEstimatedDays": 26,
+  "architecture": {
+    "frontend": {
+      "framework": "Next.js 14",
+      "styling": "TailwindCSS + shadcn/ui",
+      "stateManagement": "Zustand",
+      "dataFetching": "TanStack Query",
+      "forms": "React Hook Form + Zod",
+      "deployment": "Vercel"
+    },
+    "backend": {
+      "runtime": "Node.js",
+      "framework": "Express",
+      "database": "PostgreSQL + Prisma",
+      "cache": "Redis",
+      "queue": "BullMQ",
+      "deployment": "DigitalOcean"
+    },
+    "infrastructure": {
+      "database": "Supabase PostgreSQL",
+      "auth": "Supabase Auth",
+      "storage": "Supabase Storage",
+      "payments": "Stripe",
+      "monitoring": "Sentry",
+      "analytics": "PostHog"
+    }
+  },
+  "testingStrategy": {
+    "unit": "Jest + Testing Library",
+    "e2e": "Playwright",
+    "api": "Supertest",
+    "coverage": ">80%"
+  }
+}
