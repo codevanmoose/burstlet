@@ -14,9 +14,13 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "db:seed": "tsx src/scripts/seed.ts"
+    "db:seed": "tsx src/scripts/seed.ts",
+    "mcp:dev": "tsx src/mcp/server.ts",
+    "mcp:build": "tsc src/mcp/server.ts --outDir dist/mcp",
+    "mcp:start": "node dist/mcp/server.js"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0",
     "@prisma/client": "^5.7.1",
     "@supabase/supabase-js": "^2.39.0",
     "bcrypt": "^5.1.1",

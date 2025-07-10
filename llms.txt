@@ -1,14 +1,27 @@
 # Burstlet - AI-Powered Content Creation Platform
 
 ## About
-Burstlet is a SaaS platform that automates content creation and distribution across multiple social media platforms. Users input text prompts and the system generates videos, distributes them across YouTube Shorts, TikTok, Instagram Reels, and Twitter, with unified analytics.
+Burstlet is a comprehensive SaaS platform that automates content creation and distribution across social media platforms using AI. Built with Van Moose modular architecture standards for AI-first development.
+
+## Project Context
+- Language: TypeScript (strict mode)
+- Architecture: Modular monorepo following Van Moose standards
+- Backend: Express.js with 8 independent modules
+- Frontend: Next.js 14 with App Router
+- Database: PostgreSQL with Prisma ORM
+- AI Services: HailuoAI (video), OpenAI GPT-4 (text)
 
 ## Key Features
-- AI-powered video generation from text prompts
-- Multi-platform content distribution
-- Unified analytics and performance tracking
-- Content management and scheduling
-- Social media account management
+- AI-powered video generation using HailuoAI
+- Text content creation with OpenAI GPT-4
+- Multi-platform publishing (YouTube, TikTok, Instagram, Twitter)
+- OAuth integration with all major platforms
+- Unified analytics across all platforms
+- Template system with variable substitution
+- Content scheduling and calendar management
+- Team collaboration with role-based access
+- Stripe billing with tiered subscriptions
+- Enterprise-grade security (2FA, encryption, rate limiting)
 
 ## API Endpoints
 

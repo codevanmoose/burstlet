@@ -1,37 +1,74 @@
-# Burstlet.com - AI-Powered Content Creation & Distribution Platform
+# Burstlet - AI-Powered Content Creation & Distribution Platform
 
 ## Overview
 
-Burstlet.com is a SaaS platform that automates content creation and distribution across multiple social media platforms. Users input a simple prompt, and the system generates videos, distributes them across YouTube Shorts, TikTok, Instagram Reels, creates blog posts and tweets, and provides analytics tracking.
+Burstlet is a comprehensive SaaS platform that automates content creation and distribution across multiple social media platforms. Users input a simple prompt, and the system generates videos using HailuoAI, distributes them across YouTube Shorts, TikTok, Instagram Reels, creates blog posts and tweets with OpenAI, and provides unified analytics tracking across all platforms.
 
 ## Features
 
-- **Prompt-Based Content Generation**: Transform text prompts into videos using AI
-- **Multi-Platform Publishing**: Simultaneous distribution across all major social platforms
-- **Content Management**: Dashboard, calendar, and editing tools
-- **Analytics & Reporting**: Unified metrics and performance tracking
-- **Social Account Management**: OAuth integrations for all platforms
+### Core Capabilities ✅ MVP Complete
+- **AI Content Generation**: 
+  - Video creation with HailuoAI integration (complete with audio synthesis)
+  - Text content with OpenAI GPT-4 for blogs and social posts
+  - Smart prompt enhancement and cost estimation
+  - Real-time generation status tracking with progress indicators
+- **Multi-Platform Publishing**: 
+  - YouTube Shorts with automated uploads and scheduling
+  - TikTok with hashtag optimization and platform-specific formatting
+  - Instagram Reels with cross-posting to feed
+  - Twitter/X threads with media attachments
+- **Content Management**: 
+  - Advanced dashboard with table, grid, and calendar views
+  - Template system for consistent branding
+  - Version control and content history tracking
+  - Bulk operations (select, delete, export, publish)
+  - Advanced filtering by date, status, type, and platform
+- **Analytics & Insights**: 
+  - Unified metrics dashboard with key performance indicators
+  - Time-series charts for views, engagement, and reach tracking
+  - Platform breakdown with distribution analytics
+  - Top performing content rankings with engagement metrics
+  - Custom date range filtering and real-time updates
+- **Team Collaboration** (Planned):
+  - Multi-user workspaces
+  - Role-based access control (Owner, Admin, Editor, Viewer)
+  - Content approval workflows
+  - Activity logs and audit trails
+
+### Security & Compliance
+- OAuth 2.0 authentication with all major platforms
+- Two-factor authentication (2FA)
+- API key management with scopes
+- Rate limiting and DDoS protection
+- GDPR compliance and data encryption
 
 ## Tech Stack
 
-### Frontend
-- Next.js 14 with App Router
-- TailwindCSS + shadcn/ui
-- TypeScript
-- Zustand for state management
+### Frontend ✅ Complete
+- **Framework**: Next.js 14 with App Router
+- **Styling**: TailwindCSS + shadcn/ui components
+- **Language**: TypeScript with strict mode
+- **Data Fetching**: TanStack Query (React Query) with automatic caching
+- **Forms**: React Hook Form with Zod validation
+- **Charts**: Recharts for analytics visualization
+- **State**: Zustand for global state management (planned)
+- **Testing**: Visual regression testing with Playwright
 
 ### Backend
-- Node.js with Express
-- PostgreSQL with Prisma ORM
-- Redis + BullMQ for queues
-- TypeScript
+- **Runtime**: Node.js 20+ with Express.js
+- **Database**: PostgreSQL 15+ with Prisma ORM
+- **Queue**: Redis + BullMQ for job processing
+- **Language**: TypeScript with strict mode
+- **API**: RESTful with OpenAPI documentation
+- **Testing**: Jest with supertest
 
 ### Infrastructure
-- **Frontend**: Vercel
-- **Backend**: DigitalOcean App Platform
-- **Database**: Supabase PostgreSQL
-- **Storage**: Supabase Storage
-- **Auth**: Supabase Auth
+- **Frontend Hosting**: Vercel with Edge Functions
+- **Backend Hosting**: DigitalOcean App Platform
+- **Database**: Supabase PostgreSQL with pooling
+- **File Storage**: Supabase Storage for media
+- **CDN**: Cloudflare for global distribution
+- **Monitoring**: Custom monitoring module with APM
 
 ## Project Structure
 
@@ -92,12 +129,22 @@ burstlet/
 
 ## Scripts
 
+### Development
 - `npm run dev` - Start development servers
 - `npm run build` - Build for production
-- `npm run test` - Run all tests
-- `npm run test:e2e` - Run E2E tests
 - `npm run lint` - Run linting
 - `npm run type-check` - Run type checking
+
+### Testing
+- `npm run test` - Run all tests
+- `npm run test:visual` - Run visual regression tests
+- `npm run test:visual:update` - Update visual test baselines
+- `npm run test:e2e` - Run E2E tests (planned)
+
+### Database
+- `npm run db:migrate` - Run database migrations
+- `npm run db:seed` - Seed database with sample data
+- `npm run db:reset` - Reset database
 
 ## Architecture Principles
 

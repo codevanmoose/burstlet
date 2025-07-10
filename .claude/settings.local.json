@@ -6,7 +6,14 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(gh repo create:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(rm:*)",
+      "Bash(npm run lint)",
+      "Bash(mv:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": []
   }
