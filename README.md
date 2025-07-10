@@ -1,173 +1,206 @@
-# Burstlet - AI-Powered Content Creation & Distribution Platform
+# 🚀 Burstlet - AI-Powered Content Creation & Distribution Platform
 
-## Overview
+[![Built with Van Moose](https://img.shields.io/badge/Built%20with-Van%20Moose-blue)](https://vanmoose.dev)
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Burstlet is a comprehensive SaaS platform that automates content creation and distribution across multiple social media platforms. Users input a simple prompt, and the system generates videos using HailuoAI, distributes them across YouTube Shorts, TikTok, Instagram Reels, creates blog posts and tweets with OpenAI, and provides unified analytics tracking across all platforms.
+Burstlet is a cutting-edge AI-powered platform that automates content creation and distribution across multiple social media platforms. Generate engaging videos, blog posts, and social media content with AI, then automatically publish to YouTube, TikTok, Instagram, and Twitter.
 
-## Features
+## ✨ Features
 
-### Core Capabilities ✅ MVP Complete
-- **AI Content Generation**: 
-  - Video creation with HailuoAI integration (complete with audio synthesis)
-  - Text content with OpenAI GPT-4 for blogs and social posts
-  - Smart prompt enhancement and cost estimation
-  - Real-time generation status tracking with progress indicators
-- **Multi-Platform Publishing**: 
-  - YouTube Shorts with automated uploads and scheduling
-  - TikTok with hashtag optimization and platform-specific formatting
-  - Instagram Reels with cross-posting to feed
-  - Twitter/X threads with media attachments
-- **Content Management**: 
-  - Advanced dashboard with table, grid, and calendar views
-  - Template system for consistent branding
-  - Version control and content history tracking
-  - Bulk operations (select, delete, export, publish)
-  - Advanced filtering by date, status, type, and platform
-- **Analytics & Insights**: 
-  - Unified metrics dashboard with key performance indicators
-  - Time-series charts for views, engagement, and reach tracking
-  - Platform breakdown with distribution analytics
-  - Top performing content rankings with engagement metrics
-  - Custom date range filtering and real-time updates
-- **Team Collaboration** (Planned):
-  - Multi-user workspaces
-  - Role-based access control (Owner, Admin, Editor, Viewer)
-  - Content approval workflows
-  - Activity logs and audit trails
+### 🎬 AI Content Generation
+- **Video Generation**: Create stunning videos using HailuoAI with custom prompts
+- **Audio Integration**: Add AI-generated voiceovers and background music with MiniMax
+- **Blog Creation**: Generate SEO-optimized blog posts with OpenAI GPT-4
+- **Social Posts**: Create platform-optimized content for all major social networks
+### 📱 Multi-Platform Distribution
+- **YouTube**: Automatic Shorts upload with optimized titles and descriptions
+- **TikTok**: Direct posting with trending hashtags and captions
+- **Instagram**: Reels and posts with automatic formatting
+- **Twitter/X**: Thread creation and media uploads
+### 📊 Analytics & Insights
+- Unified analytics dashboard across all platforms
+- Performance tracking and engagement metrics
+- Content calendar with scheduling
+- ROI tracking for each piece of content
 
-### Security & Compliance
-- OAuth 2.0 authentication with all major platforms
-- Two-factor authentication (2FA)
-- API key management with scopes
-- Rate limiting and DDoS protection
-- GDPR compliance and data encryption
+### 💳 Monetization & Billing
+- Flexible subscription plans with Stripe integration
+- Usage-based pricing for AI generations
+- Team collaboration features
+- White-label options for agencies
 
-## Tech Stack
 
-### Frontend ✅ Complete
+## 🛠️ Tech Stack
+
+### Frontend
 - **Framework**: Next.js 14 with App Router
 - **Styling**: TailwindCSS + shadcn/ui components
-- **Language**: TypeScript with strict mode
-- **Data Fetching**: TanStack Query (React Query) with automatic caching
-- **Forms**: React Hook Form with Zod validation
-- **Charts**: Recharts for analytics visualization
-- **State**: Zustand for global state management (planned)
-- **Testing**: Visual regression testing with Playwright
+- **State Management**: Zustand
+- **Data Fetching**: TanStack Query (React Query)
+- **Forms**: React Hook Form + Zod validation
+- **Charts**: Recharts for analytics
 
 ### Backend
-- **Runtime**: Node.js 20+ with Express.js
-- **Database**: PostgreSQL 15+ with Prisma ORM
+- **Runtime**: Node.js with Express
+- **Database**: PostgreSQL with Prisma ORM
 - **Queue**: Redis + BullMQ for job processing
-- **Language**: TypeScript with strict mode
-- **API**: RESTful with OpenAPI documentation
-- **Testing**: Jest with supertest
+- **Storage**: Supabase Storage for media files
+- **Auth**: Supabase Auth with OAuth providers
+
+### AI Services
+- **Video Generation**: HailuoAI API
+- **Audio Generation**: MiniMax API
+- **Text Generation**: OpenAI GPT-4 / Claude API
+- **Video Processing**: FFmpeg for audio-video synthesis
 
 ### Infrastructure
-- **Frontend Hosting**: Vercel with Edge Functions
+- **Frontend Hosting**: Vercel
 - **Backend Hosting**: DigitalOcean App Platform
-- **Database**: Supabase PostgreSQL with pooling
-- **File Storage**: Supabase Storage for media
-- **CDN**: Cloudflare for global distribution
-- **Monitoring**: Custom monitoring module with APM
+- **Database**: Supabase PostgreSQL
+- **CDN**: Cloudflare for media delivery
 
-## Project Structure
-
-```
-burstlet/
-├── CLAUDE.md                    # Living development journal
-├── README.md                    # This file
-├── modules/                     # Core functionality modules
-│   ├── _manifest.json          # Module registry and dependencies
-│   ├── auth/                   # Authentication & OAuth
-│   ├── ai-generation/          # Video/content generation
-│   ├── platform-integrations/  # Social media APIs
-│   ├── content-management/     # Dashboard & content tools
-│   ├── analytics/              # Metrics & reporting
-│   ├── billing/                # Stripe integration
-│   └── admin/                  # Admin panel
-├── shared/                     # Cross-module utilities
-│   ├── types/                  # TypeScript definitions
-│   ├── utils/                  # Helper functions
-│   └── constants/              # Configuration
-├── frontend/                   # Next.js application
-├── backend/                    # Node.js API server
-├── infrastructure/             # Deployment configs
-└── tests/                      # E2E tests
-```
-
-## Development Setup
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 20+
-- PostgreSQL 15+
-- Redis
-- uv (for Python tooling)
+- Node.js 18+ and npm
+- PostgreSQL database
+- Redis server
+- FFmpeg (for video processing)
 
 ### Installation
 
-1. Clone the repository
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/burstlet.git
+cd burstlet
+```
+
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
 3. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   # Fill in your environment variables
-   ```
+```bash
+cp .env.example .env
+# Edit .env with your API keys and configuration
+```
 
-4. Run database migrations:
-   ```bash
-   npm run db:migrate
-   ```
+4. Set up the database:
+```bash
+cd backend
+npx prisma migrate dev
+npx prisma generate
+```
 
-5. Start development servers:
-   ```bash
-   npm run dev
-   ```
+5. Start the development servers:
 
-## Scripts
+Backend:
+```bash
+cd backend
+npm run dev
+```
 
-### Development
-- `npm run dev` - Start development servers
-- `npm run build` - Build for production
-- `npm run lint` - Run linting
-- `npm run type-check` - Run type checking
+Frontend:
+```bash
+cd frontend
+npm run dev
+```
 
-### Testing
-- `npm run test` - Run all tests
-- `npm run test:visual` - Run visual regression tests
-- `npm run test:visual:update` - Update visual test baselines
-- `npm run test:e2e` - Run E2E tests (planned)
+Queue Worker:
+```bash
+cd backend
+npm run worker
+```
 
-### Database
-- `npm run db:migrate` - Run database migrations
-- `npm run db:seed` - Seed database with sample data
-- `npm run db:reset` - Reset database
+## 📁 Project Structure
 
-## Architecture Principles
+```
+burstlet/
+├── frontend/                # Next.js frontend application
+│   ├── src/
+│   │   ├── app/            # App router pages
+│   │   ├── components/     # React components
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/            # Utilities and API client
+│   │   ├── store/          # Zustand state management
+│   │   └── types/          # TypeScript definitions
+│   └── public/             # Static assets
+│
+├── backend/                 # Node.js backend application
+│   ├── src/
+│   │   ├── modules/        # Feature modules
+│   │   │   ├── auth/       # Authentication & authorization
+│   │   │   ├── ai-generation/  # AI content generation
+│   │   │   ├── platform-integrations/  # Social media APIs
+│   │   │   ├── content-management/     # Content CRUD
+│   │   │   ├── analytics/  # Analytics aggregation
+│   │   │   ├── billing/    # Stripe integration
+│   │   │   └── ...         # Other modules
+│   │   └── shared/         # Shared utilities
+│   └── prisma/             # Database schema
+│
+├── tests/                   # Test suites
+│   ├── visual/             # Visual regression tests
+│   └── e2e/                # End-to-end tests
+│
+└── docs/                    # Documentation
+```
 
-This project follows Van Moose development standards:
+## 🧪 Testing
 
-- **Modular Architecture**: Each feature is isolated in its own module
-- **Agent-First Design**: APIs designed for AI agents with MCP compatibility
-- **KISS Principle**: Keep It Simple, Stupid
-- **YAGNI**: You Aren't Gonna Need It
-- **Testing**: Comprehensive unit and E2E testing
+Run all tests:
+```bash
+npm test
+```
 
-## Contributing
+Run visual regression tests:
+```bash
+npm run test:visual
+```
 
-1. Follow the modular architecture
-2. Write tests for new features
-3. Update documentation
-4. Follow conventional commits
-5. Keep files under 500 lines
+Update visual baselines:
+```bash
+npm run test:visual:update
+```
 
-## License
+## 📚 API Documentation
 
-Private - All rights reserved
+The API follows RESTful principles and is documented with OpenAPI/Swagger. Once the backend is running, visit:
 
-## Support
+```
+http://localhost:3001/api-docs
+```
 
-For support, email hello@burstlet.com or create an issue in the repository.
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with the Van Moose modular architecture
+- UI components from [shadcn/ui](https://ui.shadcn.com/)
+- Video generation powered by [HailuoAI](https://hailuoai.video)
+- Audio generation by [MiniMax](https://minimax.io)
+
+## 📞 Support
+
+- Documentation: [docs.burstlet.com](https://docs.burstlet.com)
+- Discord: [Join our community](https://discord.gg/burstlet)
+- Email: support@burstlet.com
+
+---
+
+Made with ❤️ by the Burstlet Team

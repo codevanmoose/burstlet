@@ -1,0 +1,22 @@
+{
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/.next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "functions": {
+    "frontend/src/app/api/auth/[...nextauth]/route.ts": {
+      "maxDuration": 10
+    }
+  },
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@burstlet_api_url",
+    "NEXTAUTH_URL": "@burstlet_nextauth_url",
+    "NEXTAUTH_SECRET": "@burstlet_nextauth_secret",
+    "GOOGLE_CLIENT_ID": "@burstlet_google_client_id",
+    "GOOGLE_CLIENT_SECRET": "@burstlet_google_client_secret",
+    "NEXT_PUBLIC_SUPABASE_URL": "@burstlet_supabase_url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@burstlet_supabase_anon_key",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@burstlet_stripe_publishable_key"
+  }
+}
