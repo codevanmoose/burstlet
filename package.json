@@ -40,7 +40,7 @@
     "clean:build": "rm -rf frontend/.next backend/dist",
     "deploy": "npm run build && npm run deploy:frontend && npm run deploy:backend",
     "deploy:frontend": "cd frontend && vercel --prod",
-    "deploy:backend": "cd backend && doctl apps create-deployment",
+    "deploy:backend": "cd backend && doctl apps create-deployment"
   },
   "workspaces": [
     "frontend",
