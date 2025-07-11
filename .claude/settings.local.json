@@ -50,7 +50,8 @@
       "Bash(npx prisma:*)",
       "Bash(cd:*)",
       "Bash(cd:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(./scripts/final-launch-checklist.sh:*)"
     ],
     "deny": []
   }
