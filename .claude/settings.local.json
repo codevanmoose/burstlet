@@ -32,7 +32,9 @@
       "Bash(supabase status:*)",
       "Bash(curl:*)",
       "WebFetch(domain:supabase.com)",
-      "Bash(doctl apps:*)"
+      "Bash(doctl apps:*)",
+      "Bash(./scripts/add-vercel-env.sh:*)",
+      "Bash(touch:*)"
     ],
     "deny": []
   }

@@ -1,0 +1,69 @@
+# DigitalOcean App Platform Configuration
+name: burstlet-api
+region: nyc
+services:
+- name: api
+  github:
+    repo: vanmooseprojects/burstlet
+    branch: main
+    deploy_on_push: true
+  source_dir: backend
+  build_command: npm ci --production=false && npm run build
+  run_command: npm start
+  environment_slug: node-js
+  instance_size_slug: basic-xxs
+  instance_count: 1
+  http_port: 3001
+  routes:
+  - path: /
+  envs:
+  - key: NODE_ENV
+    value: "production"
+  - key: PORT
+    value: "3001"
+  - key: DATABASE_URL
+    scope: RUN_TIME
+    type: SECRET
+  - key: SUPABASE_URL
+    scope: RUN_TIME
+    type: SECRET
+  - key: SUPABASE_SERVICE_KEY
+    scope: RUN_TIME
+    type: SECRET
+  - key: JWT_SECRET
+    scope: RUN_TIME
+    type: SECRET
+  - key: RESEND_API_KEY
+    scope: RUN_TIME
+    type: SECRET
+  - key: OPENAI_API_KEY
+    scope: RUN_TIME
+    type: SECRET
+  - key: HAILUOAI_API_KEY
+    scope: RUN_TIME
+    type: SECRET
+  - key: MINIMAX_API_KEY
+    scope: RUN_TIME
+    type: SECRET
+  - key: STRIPE_SECRET_KEY
+    scope: RUN_TIME
+    type: SECRET
+  - key: STRIPE_WEBHOOK_SECRET
+    scope: RUN_TIME
+    type: SECRET
+  - key: REDIS_URL
+    scope: RUN_TIME
+    type: SECRET
+  - key: FRONTEND_URL
+    value: "https://burstlet-gilt.vercel.app"
+  - key: BACKEND_URL
+    value: "https://api.burstlet.com"
+databases:
+- name: burstlet-db
+  engine: PG
+  production: false
+  version: "15"
+- name: burstlet-redis
+  engine: REDIS
+  production: false
+  version: "7"
