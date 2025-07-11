@@ -42,7 +42,8 @@
       "Bash(./scripts/backend-env-setup.sh:*)",
       "Bash(supabase db url:*)",
       "Bash(gh repo view:*)",
-      "Bash(gh repo edit:*)"
+      "Bash(gh repo edit:*)",
+      "Bash(npm init:*)"
     ],
     "deny": []
   }
