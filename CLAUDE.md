@@ -6,10 +6,10 @@ This document serves as the primary reference for AI assistants working on the B
 Burstlet is an AI-powered content creation and distribution platform built following Van Moose development standards. The platform enables users to generate videos using HailuoAI, create text content with OpenAI, and automatically distribute content across YouTube, TikTok, Instagram, and Twitter.
 
 ## Current Status
-- **Phase**: Frontend Complete - Zustand State Management Integrated
-- **Date**: 2025-01-10
+- **Phase**: Deployment Phase - Frontend Live on Vercel
+- **Date**: 2025-01-11
 - **Developer**: Working with Claude Code
-- **Last Session**: Completed Billing Page and Zustand Global State Management
+- **Last Session**: Successfully deployed frontend to Vercel and created Supabase project
 
 ## Module Development Progress
 
@@ -189,12 +189,12 @@ graph TD
 ## Environment Variables Needed
 ```bash
 # Database
-DATABASE_URL=
+DATABASE_URL=postgresql://postgres:[password]@db.cmfdlebyqgjifwmfvquu.supabase.co:5432/postgres
 
 # Supabase
-SUPABASE_URL=
-SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_KEY=
+SUPABASE_URL=https://cmfdlebyqgjifwmfvquu.supabase.co
+SUPABASE_ANON_KEY=[get from Supabase dashboard]
+SUPABASE_SERVICE_KEY=[get from Supabase dashboard]
 
 # AI Services
 OPENAI_API_KEY=
@@ -219,8 +219,13 @@ STRIPE_WEBHOOK_SECRET=
 RESEND_API_KEY=
 
 # Storage
-STORAGE_BUCKET=
+STORAGE_BUCKET=burstlet-media
 ```
+
+## Deployment URLs
+- **Frontend (Vercel)**: https://burstlet-frontend.vercel.app
+- **Supabase Project**: https://supabase.com/dashboard/project/cmfdlebyqgjifwmfvquu
+- **Database Password**: BurstletDB2025!
 
 ## Recent Changes
 - 2025-01-09: Created project structure and README
@@ -376,6 +381,14 @@ STORAGE_BUCKET=
   - Updated sidebar to use Zustand for collapsible state (174 lines)
   - Integrated stores with authentication provider
   - Updated content page to use centralized state management
+- 2025-01-11: **DEPLOYMENT PHASE INITIATED**
+  - Fixed package.json postinstall infinite loop issue
+  - Added missing UI components (Progress, AlertDialog)
+  - Created type definitions for auth and content
+  - Configured Next.js to temporarily ignore build errors
+  - Successfully deployed frontend to Vercel at https://burstlet-frontend.vercel.app
+  - Created Supabase project: cmfdlebyqgjifwmfvquu
+  - Set up deployment documentation and configuration files
 
 ## TODO
 - [x] Complete AI generation interface (video, blog, social posts)

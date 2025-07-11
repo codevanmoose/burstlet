@@ -26,7 +26,13 @@
       "Bash(cd:*)",
       "Bash(ls:*)",
       "Bash(cd:*)",
-      "Bash(vercel:*)"
+      "Bash(vercel:*)",
+      "Bash(supabase projects:*)",
+      "Bash(supabase link:*)",
+      "Bash(supabase status:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:supabase.com)",
+      "Bash(doctl apps:*)"
     ],
     "deny": []
   }
