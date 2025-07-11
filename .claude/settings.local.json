@@ -44,7 +44,9 @@
       "Bash(gh repo view:*)",
       "Bash(gh repo edit:*)",
       "Bash(npm init:*)",
-      "Bash(railway login:*)"
+      "Bash(railway login:*)",
+      "Bash(railway whoami:*)",
+      "Bash(command:*)"
     ],
     "deny": []
   }
