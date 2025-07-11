@@ -34,7 +34,10 @@
       "WebFetch(domain:supabase.com)",
       "Bash(doctl apps:*)",
       "Bash(./scripts/add-vercel-env.sh:*)",
-      "Bash(touch:*)"
+      "Bash(touch:*)",
+      "Bash(gh auth:*)",
+      "Bash(./scripts/create-github-repo.sh:*)",
+      "Bash(doctl auth:*)"
     ],
     "deny": []
   }

@@ -4,7 +4,7 @@ region: nyc
 services:
 - name: api
   github:
-    repo: vanmooseprojects/burstlet
+    repo: codevanmoose/burstlet
     branch: main
     deploy_on_push: true
   source_dir: backend
