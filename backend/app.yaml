@@ -58,12 +58,3 @@ services:
     value: "https://burstlet-gilt.vercel.app"
   - key: BACKEND_URL
     value: "https://api.burstlet.com"
-databases:
-- name: burstlet-db
-  engine: PG
-  production: false
-  version: "15"
-- name: burstlet-redis
-  engine: REDIS
-  production: false
-  version: "7"

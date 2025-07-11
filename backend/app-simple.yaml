@@ -1,0 +1,21 @@
+# DigitalOcean App Platform Configuration - Simple Version
+name: burstlet-api
+region: nyc
+services:
+- name: api
+  github:
+    repo: codevanmoose/burstlet
+    branch: main
+    deploy_on_push: true
+  source_dir: backend
+  environment_slug: node-js
+  instance_size_slug: basic-xxs
+  instance_count: 1
+  http_port: 3001
+  routes:
+  - path: /
+  envs:
+  - key: NODE_ENV
+    value: "production"
+  - key: PORT
+    value: "3001"

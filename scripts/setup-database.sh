@@ -1,0 +1,21 @@
+#!/bin/bash
+# Script to set up database migrations
+
+echo "=== Database Setup Instructions ==="
+echo ""
+echo "1. Get your Supabase database password from:"
+echo "   https://supabase.com/dashboard/project/cmfdlebyqgjifwmfvquu/settings/database"
+echo ""
+echo "2. Your DATABASE_URL will be:"
+echo "   postgresql://postgres:[YOUR-PASSWORD]@db.cmfdlebyqgjifwmfvquu.supabase.co:5432/postgres"
+echo ""
+echo "3. To run migrations locally:"
+echo "   cd backend"
+echo "   npm install"
+echo "   npx prisma generate"
+echo "   DATABASE_URL='your-database-url' npx prisma db push"
+echo ""
+echo "4. To create initial admin user (optional):"
+echo "   DATABASE_URL='your-database-url' npm run db:seed"
+echo ""
+echo "Note: Replace [YOUR-PASSWORD] with the actual password from Supabase dashboard"

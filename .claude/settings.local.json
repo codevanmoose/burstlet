@@ -37,7 +37,12 @@
       "Bash(touch:*)",
       "Bash(gh auth:*)",
       "Bash(./scripts/create-github-repo.sh:*)",
-      "Bash(doctl auth:*)"
+      "Bash(doctl auth:*)",
+      "Bash(./scripts/deploy-backend.sh:*)",
+      "Bash(./scripts/backend-env-setup.sh:*)",
+      "Bash(supabase db url:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh repo edit:*)"
     ],
     "deny": []
   }
