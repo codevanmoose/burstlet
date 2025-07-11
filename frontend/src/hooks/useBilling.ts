@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import { billingApi } from '@/lib/api/services/billing';
+import { billingApi } from '@/lib/api/billing';
 import type { 
   Subscription, 
   PaymentMethod, 
