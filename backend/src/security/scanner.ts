@@ -108,7 +108,7 @@ class SecurityScanner {
   detectPathTraversal(input: string): SecurityThreat | null {
     const pathTraversalPatterns = [
       /\.\.\//g,
-      /\.\.\\\/g,
+      /\.\.\\\//g,
       /\.\.\\/g,
       /%2e%2e%2f/gi,
       /%252e%252e%252f/gi,

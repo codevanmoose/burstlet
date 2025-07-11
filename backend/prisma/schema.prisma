@@ -12,51 +12,58 @@ datasource db {
 
 // Authentication Models
 model User {
-  id                String    @id @default(cuid())
-  email             String    @unique
-  passwordHash      String?   @map("password_hash")
-  name              String?
-  avatarUrl         String?   @map("avatar_url")
-  role              UserRole  @default(CREATOR)
-  emailVerified     Boolean   @default(false) @map("email_verified")
-  twoFactorEnabled  Boolean   @default(false) @map("two_factor_enabled")
-  createdAt         DateTime  @default(now()) @map("created_at")
-  updatedAt         DateTime  @updatedAt @map("updated_at")
-  lastLoginAt       DateTime? @map("last_login_at")
+  id               String    @id @default(cuid())
+  email            String    @unique
+  passwordHash     String?   @map("password_hash")
+  name             String?
+  avatarUrl        String?   @map("avatar_url")
+  role             UserRole  @default(CREATOR)
+  emailVerified    Boolean   @default(false) @map("email_verified")
+  twoFactorEnabled Boolean   @default(false) @map("two_factor_enabled")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+  lastLoginAt      DateTime? @map("last_login_at")
 
   // Relations
-  sessions          Session[]
-  oauthProviders    OAuthProvider[]
-  twoFactorAuth     TwoFactorAuth?
+  sessions           Session[]
+  oauthProviders     OAuthProvider[]
+  twoFactorAuth      TwoFactorAuth?
   contentGenerations ContentGeneration[]
-  contentLibrary    ContentLibrary[]
-  subscriptions     Subscription[]
-  usageRecords      UsageRecord[]
-  invoices          Invoice[]
-  paymentMethods    PaymentMethod[]
-  billingEvents     BillingEvent[]
-  supportTickets    SupportTicket[]
-  auditLogs         AuditLog[]
-  dashboards        Dashboard[]
-  contentDrafts     ContentDraft[]
-  contentTemplates  ContentTemplate[]
-  userMetrics       UserMetrics[]
-  adminActions      UserManagement[]
+  contentLibrary     ContentLibrary[]
+  subscriptions      Subscription[]
+  usageRecords       UsageRecord[]
+  invoices           Invoice[]
+  paymentMethods     PaymentMethod[]
+  billingEvents      BillingEvent[]
+  supportTickets     SupportTicket[]
+  auditLogs          AuditLog[]
+  dashboards         Dashboard[]
+  contentDrafts      ContentDraft[]
+  contentTemplates   ContentTemplate[]
+  userMetrics        UserMetrics[]
+  adminActions       UserManagement[]
   contentModerations ContentModeration[]
+  PlatformConnection PlatformConnection[]
+  PublishingJob      PublishingJob[]
+  ContentSchedule    ContentSchedule[]
+  Analytics          Analytics[]
+  AnalyticsReport    AnalyticsReport[]
+  PlatformInsights   PlatformInsights[]
+  AdminUser          AdminUser[]
 
   @@map("users")
 }
 
 model Session {
-  id          String    @id @default(cuid())
-  userId      String    @map("user_id")
-  token       String    @unique
+  id           String   @id @default(cuid())
+  userId       String   @map("user_id")
+  token        String   @unique
   refreshToken String   @unique @map("refresh_token")
-  expiresAt   DateTime  @map("expires_at")
-  deviceInfo  Json?     @map("device_info")
-  ipAddress   String?   @map("ip_address")
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @updatedAt @map("updated_at")
+  expiresAt    DateTime @map("expires_at")
+  deviceInfo   Json?    @map("device_info")
+  ipAddress    String?  @map("ip_address")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -65,21 +72,21 @@ model Session {
 }
 
 model OAuthProvider {
-  id               String    @id @default(cuid())
-  userId           String    @map("user_id")
-  provider         Platform
-  providerUserId   String    @map("provider_user_id")
-  accessToken      String    @map("access_token")
-  refreshToken     String?   @map("refresh_token")
-  tokenExpiresAt   DateTime? @map("token_expires_at")
-  scope            String[]
-  accountName      String    @map("account_name")
-  accountAvatar    String?   @map("account_avatar")
-  connectedAt      DateTime  @default(now()) @map("connected_at")
-  updatedAt        DateTime  @updatedAt @map("updated_at")
+  id             String    @id @default(cuid())
+  userId         String    @map("user_id")
+  provider       Platform
+  providerUserId String    @map("provider_user_id")
+  accessToken    String    @map("access_token")
+  refreshToken   String?   @map("refresh_token")
+  tokenExpiresAt DateTime? @map("token_expires_at")
+  scope          String[]
+  accountName    String    @map("account_name")
+  accountAvatar  String?   @map("account_avatar")
+  connectedAt    DateTime  @default(now()) @map("connected_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
 
   // Relations
-  user             User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
   platformConnections PlatformConnection[]
 
   @@unique([userId, provider])
@@ -87,12 +94,12 @@ model OAuthProvider {
 }
 
 model TwoFactorAuth {
-  id           String    @id @default(cuid())
-  userId       String    @unique @map("user_id")
-  secret       String
-  backupCodes  String[]  @map("backup_codes")
-  enabledAt    DateTime  @default(now()) @map("enabled_at")
-  lastUsedAt   DateTime? @map("last_used_at")
+  id          String    @id @default(cuid())
+  userId      String    @unique @map("user_id")
+  secret      String
+  backupCodes String[]  @map("backup_codes")
+  enabledAt   DateTime  @default(now()) @map("enabled_at")
+  lastUsedAt  DateTime? @map("last_used_at")
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -102,41 +109,41 @@ model TwoFactorAuth {
 
 // Content Generation Models
 model ContentGeneration {
-  id                   String                @id @default(cuid())
-  userId               String                @map("user_id")
-  prompt               String
-  enhancedPrompt       String?               @map("enhanced_prompt")
-  status               GenerationStatus      @default(PENDING)
-  progressPercentage   Int                   @default(0) @map("progress_percentage")
-  generatedVideoUrl    String?               @map("generated_video_url")
-  videoDuration        Int?                  @map("video_duration")
-  videoResolution      String?               @map("video_resolution")
-  generationMetadata   Json                  @map("generation_metadata")
-  errorMessage         String?               @map("error_message")
-  createdAt            DateTime              @default(now()) @map("created_at")
-  updatedAt            DateTime              @updatedAt @map("updated_at")
-  completedAt          DateTime?             @map("completed_at")
+  id                 String           @id @default(cuid())
+  userId             String           @map("user_id")
+  prompt             String
+  enhancedPrompt     String?          @map("enhanced_prompt")
+  status             GenerationStatus @default(PENDING)
+  progressPercentage Int              @default(0) @map("progress_percentage")
+  generatedVideoUrl  String?          @map("generated_video_url")
+  videoDuration      Int?             @map("video_duration")
+  videoResolution    String?          @map("video_resolution")
+  generationMetadata Json             @map("generation_metadata")
+  errorMessage       String?          @map("error_message")
+  createdAt          DateTime         @default(now()) @map("created_at")
+  updatedAt          DateTime         @updatedAt @map("updated_at")
+  completedAt        DateTime?        @map("completed_at")
 
   // Relations
-  user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  generatedContent  GeneratedContent[]
-  generationQueue   GenerationQueue[]
-  publishingJobs    PublishingJob[]
-  contentLibrary    ContentLibrary[]
+  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  generatedContent GeneratedContent[]
+  generationQueue  GenerationQueue[]
+  publishingJobs   PublishingJob[]
+  contentLibrary   ContentLibrary[]
 
   @@map("content_generations")
 }
 
 model GeneratedContent {
-  id            String       @id @default(cuid())
-  generationId  String       @map("generation_id")
-  contentType   ContentType
-  contentUrl    String?      @map("content_url")
-  contentText   String?      @map("content_text")
-  platform      Platform     @default(ALL)
-  metadata      Json
-  qualityScore  Decimal?     @map("quality_score")
-  createdAt     DateTime     @default(now()) @map("created_at")
+  id           String      @id @default(cuid())
+  generationId String      @map("generation_id")
+  contentType  ContentType
+  contentUrl   String?     @map("content_url")
+  contentText  String?     @map("content_text")
+  platform     Platform    @default(ALL)
+  metadata     Json
+  qualityScore Decimal?    @map("quality_score")
+  createdAt    DateTime    @default(now()) @map("created_at")
 
   // Relations
   generation ContentGeneration @relation(fields: [generationId], references: [id], onDelete: Cascade)
@@ -145,30 +152,30 @@ model GeneratedContent {
 }
 
 model AIProvider {
-  id            String    @id @default(cuid())
-  name          String    @unique
-  status        ProviderStatus @default(ACTIVE)
-  rateLimit     Int       @map("rate_limit")
-  costPerRequest Decimal  @map("cost_per_request")
-  qualityRating Decimal   @map("quality_rating")
-  lastUsedAt    DateTime? @map("last_used_at")
-  errorCount    Int       @default(0) @map("error_count")
-  successCount  Int       @default(0) @map("success_count")
+  id             String         @id @default(cuid())
+  name           String         @unique
+  status         ProviderStatus @default(ACTIVE)
+  rateLimit      Int            @map("rate_limit")
+  costPerRequest Decimal        @map("cost_per_request")
+  qualityRating  Decimal        @map("quality_rating")
+  lastUsedAt     DateTime?      @map("last_used_at")
+  errorCount     Int            @default(0) @map("error_count")
+  successCount   Int            @default(0) @map("success_count")
 
   @@map("ai_providers")
 }
 
 model GenerationQueue {
-  id           String    @id @default(cuid())
-  generationId String    @map("generation_id")
-  priority     Priority  @default(NORMAL)
-  attempts     Int       @default(0)
-  maxAttempts  Int       @default(3) @map("max_attempts")
-  nextRetryAt  DateTime? @map("next_retry_at")
-  queuePosition Int      @map("queue_position")
-  createdAt    DateTime  @default(now()) @map("created_at")
-  startedAt    DateTime? @map("started_at")
-  completedAt  DateTime? @map("completed_at")
+  id            String    @id @default(cuid())
+  generationId  String    @map("generation_id")
+  priority      Priority  @default(NORMAL)
+  attempts      Int       @default(0)
+  maxAttempts   Int       @default(3) @map("max_attempts")
+  nextRetryAt   DateTime? @map("next_retry_at")
+  queuePosition Int       @map("queue_position")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  startedAt     DateTime? @map("started_at")
+  completedAt   DateTime? @map("completed_at")
 
   // Relations
   generation ContentGeneration @relation(fields: [generationId], references: [id], onDelete: Cascade)
@@ -178,27 +185,27 @@ model GenerationQueue {
 
 // Platform Integration Models
 model PlatformConnection {
-  id                  String              @id @default(cuid())
-  userId              String              @map("user_id")
-  platform            Platform
-  accountId           String              @map("account_id")
-  accountName         String              @map("account_name")
-  accountUsername     String              @map("account_username")
-  accountAvatar       String?             @map("account_avatar")
-  accessToken         String              @map("access_token")
-  refreshToken        String?             @map("refresh_token")
-  tokenExpiresAt      DateTime?           @map("token_expires_at")
-  scopes              String[]
-  status              ConnectionStatus    @default(ACTIVE)
-  lastSyncAt          DateTime?           @map("last_sync_at")
-  errorMessage        String?             @map("error_message")
-  connectionMetadata  Json                @map("connection_metadata")
-  createdAt           DateTime            @default(now()) @map("created_at")
-  updatedAt           DateTime            @updatedAt @map("updated_at")
+  id                 String           @id @default(cuid())
+  userId             String           @map("user_id")
+  platform           Platform
+  accountId          String           @map("account_id")
+  accountName        String           @map("account_name")
+  accountUsername    String           @map("account_username")
+  accountAvatar      String?          @map("account_avatar")
+  accessToken        String           @map("access_token")
+  refreshToken       String?          @map("refresh_token")
+  tokenExpiresAt     DateTime?        @map("token_expires_at")
+  scopes             String[]
+  status             ConnectionStatus @default(ACTIVE)
+  lastSyncAt         DateTime?        @map("last_sync_at")
+  errorMessage       String?          @map("error_message")
+  connectionMetadata Json             @map("connection_metadata")
+  createdAt          DateTime         @default(now()) @map("created_at")
+  updatedAt          DateTime         @updatedAt @map("updated_at")
 
   // Relations
-  user           User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  oauthProvider  OAuthProvider @relation(fields: [userId, platform], references: [userId, provider])
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  oauthProvider  OAuthProvider   @relation(fields: [userId, platform], references: [userId, provider])
   publishingJobs PublishingJob[]
 
   @@unique([userId, platform, accountId])
@@ -300,27 +307,27 @@ enum UsageType {
 
 // Publishing Models
 model PublishingJob {
-  id                     String             @id @default(cuid())
-  userId                 String             @map("user_id")
-  generationId           String             @map("generation_id")
-  platformConnectionId   String             @map("platform_connection_id")
-  platform               Platform
-  contentType            ContentType        @default(VIDEO)
-  status                 PublishingStatus   @default(PENDING)
-  scheduledAt            DateTime?          @map("scheduled_at")
-  publishedAt            DateTime?          @map("published_at")
-  platformPostId         String?            @map("platform_post_id")
-  platformUrl            String?            @map("platform_url")
-  errorMessage           String?            @map("error_message")
-  retryCount             Int                @default(0) @map("retry_count")
-  maxRetries             Int                @default(3) @map("max_retries")
-  publishingMetadata     Json               @map("publishing_metadata")
-  createdAt              DateTime           @default(now()) @map("created_at")
-  updatedAt              DateTime           @updatedAt @map("updated_at")
+  id                   String           @id @default(cuid())
+  userId               String           @map("user_id")
+  generationId         String           @map("generation_id")
+  platformConnectionId String           @map("platform_connection_id")
+  platform             Platform
+  contentType          ContentType      @default(VIDEO)
+  status               PublishingStatus @default(PENDING)
+  scheduledAt          DateTime?        @map("scheduled_at")
+  publishedAt          DateTime?        @map("published_at")
+  platformPostId       String?          @map("platform_post_id")
+  platformUrl          String?          @map("platform_url")
+  errorMessage         String?          @map("error_message")
+  retryCount           Int              @default(0) @map("retry_count")
+  maxRetries           Int              @default(3) @map("max_retries")
+  publishingMetadata   Json             @map("publishing_metadata")
+  createdAt            DateTime         @default(now()) @map("created_at")
+  updatedAt            DateTime         @updatedAt @map("updated_at")
 
   // Relations
-  user               User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  generation         ContentGeneration @relation(fields: [generationId], references: [id], onDelete: Cascade)
+  user               User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  generation         ContentGeneration  @relation(fields: [generationId], references: [id], onDelete: Cascade)
   platformConnection PlatformConnection @relation(fields: [platformConnectionId], references: [id], onDelete: Cascade)
   platformContent    PlatformContent[]
 
@@ -328,20 +335,20 @@ model PublishingJob {
 }
 
 model PlatformContent {
-  id              String         @id @default(cuid())
-  publishingJobId String         @map("publishing_job_id")
+  id              String   @id @default(cuid())
+  publishingJobId String   @map("publishing_job_id")
   platform        Platform
   title           String?
   description     String?
   hashtags        String[]
-  videoUrl        String?        @map("video_url")
-  thumbnailUrl    String?        @map("thumbnail_url")
+  videoUrl        String?  @map("video_url")
+  thumbnailUrl    String?  @map("thumbnail_url")
   duration        Int?
-  privacy         String         @default("public")
+  privacy         String   @default("public")
   category        String?
   tags            String[]
-  customMetadata  Json           @map("custom_metadata")
-  createdAt       DateTime       @default(now()) @map("created_at")
+  customMetadata  Json     @map("custom_metadata")
+  createdAt       DateTime @default(now()) @map("created_at")
 
   // Relations
   publishingJob PublishingJob @relation(fields: [publishingJobId], references: [id], onDelete: Cascade)
@@ -350,17 +357,17 @@ model PlatformContent {
 }
 
 model PlatformAPI {
-  id            String    @id @default(cuid())
-  platform      Platform
-  endpoint      String
-  rateLimit     Int       @map("rate_limit")
-  rateWindow    Int       @map("rate_window")
-  currentUsage  Int       @default(0) @map("current_usage")
-  resetAt       DateTime  @map("reset_at")
-  status        String    @default("operational")
-  lastCheckAt   DateTime? @map("last_check_at")
-  responseTime  Int?      @map("response_time")
-  errorRate     Decimal   @default(0.0) @map("error_rate")
+  id           String    @id @default(cuid())
+  platform     Platform
+  endpoint     String
+  rateLimit    Int       @map("rate_limit")
+  rateWindow   Int       @map("rate_window")
+  currentUsage Int       @default(0) @map("current_usage")
+  resetAt      DateTime  @map("reset_at")
+  status       String    @default("operational")
+  lastCheckAt  DateTime? @map("last_check_at")
+  responseTime Int?      @map("response_time")
+  errorRate    Decimal   @default(0.0) @map("error_rate")
 
   @@unique([platform, endpoint])
   @@map("platform_apis")
@@ -368,68 +375,69 @@ model PlatformAPI {
 
 // Content Management Models
 model ContentLibrary {
-  id           String              @id @default(cuid())
-  userId       String              @map("user_id")
-  generationId String?             @map("generation_id")
+  id           String               @id @default(cuid())
+  userId       String               @map("user_id")
+  generationId String?              @map("generation_id")
   title        String
   description  String?
   status       ContentLibraryStatus @default(DRAFT)
-  contentType  ContentType         @default(VIDEO)
-  thumbnailUrl String?             @map("thumbnail_url")
-  videoUrl     String?             @map("video_url")
+  contentType  ContentType          @default(VIDEO)
+  thumbnailUrl String?              @map("thumbnail_url")
+  videoUrl     String?              @map("video_url")
   duration     Int?
   platforms    Platform[]
   tags         String[]
   category     String?
-  visibility   String              @default("private")
+  visibility   String               @default("private")
   metadata     Json
-  createdAt    DateTime            @default(now()) @map("created_at")
-  updatedAt    DateTime            @updatedAt @map("updated_at")
-  publishedAt  DateTime?           @map("published_at")
+  createdAt    DateTime             @default(now()) @map("created_at")
+  updatedAt    DateTime             @updatedAt @map("updated_at")
+  publishedAt  DateTime?            @map("published_at")
 
   // Relations
-  user             User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  generation       ContentGeneration? @relation(fields: [generationId], references: [id], onDelete: SetNull)
-  contentSchedule  ContentSchedule[]
-  analytics        Analytics[]
+  user               User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  generation         ContentGeneration?   @relation(fields: [generationId], references: [id], onDelete: SetNull)
+  contentSchedule    ContentSchedule[]
+  analytics          Analytics[]
   contentPerformance ContentPerformance[]
+  ContentModeration  ContentModeration[]
 
   @@map("content_library")
 }
 
 model ContentSchedule {
-  id                String     @id @default(cuid())
-  userId            String     @map("user_id")
-  contentId         String     @map("content_id")
+  id                String   @id @default(cuid())
+  userId            String   @map("user_id")
+  contentId         String   @map("content_id")
   platform          Platform
-  scheduledAt       DateTime   @map("scheduled_at")
-  status            String     @default("scheduled")
+  scheduledAt       DateTime @map("scheduled_at")
+  status            String   @default("scheduled")
   timezone          String
-  recurring         Boolean    @default(false)
-  recurrencePattern Json?      @map("recurrence_pattern")
-  autoGenerated     Boolean    @default(false) @map("auto_generated")
+  recurring         Boolean  @default(false)
+  recurrencePattern Json?    @map("recurrence_pattern")
+  autoGenerated     Boolean  @default(false) @map("auto_generated")
   notes             String?
-  createdAt         DateTime   @default(now()) @map("created_at")
-  updatedAt         DateTime   @updatedAt @map("updated_at")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
 
   // Relations
-  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   content ContentLibrary @relation(fields: [contentId], references: [id], onDelete: Cascade)
 
   @@map("content_schedule")
 }
 
 model ContentDraft {
-  id               String    @id @default(cuid())
-  userId           String    @map("user_id")
+  id               String   @id @default(cuid())
+  userId           String   @map("user_id")
   title            String?
   prompt           String
-  enhancedPrompt   String?   @map("enhanced_prompt")
-  platformSettings Json      @map("platform_settings")
-  autoSaveData     Json      @map("auto_save_data")
-  lastEditedAt     DateTime  @map("last_edited_at")
-  createdAt        DateTime  @default(now()) @map("created_at")
-  updatedAt        DateTime  @updatedAt @map("updated_at")
+  enhancedPrompt   String?  @map("enhanced_prompt")
+  platformSettings Json     @map("platform_settings")
+  autoSaveData     Json     @map("auto_save_data")
+  lastEditedAt     DateTime @map("last_edited_at")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -438,17 +446,17 @@ model ContentDraft {
 }
 
 model ContentTemplate {
-  id             String   @id @default(cuid())
-  userId         String   @map("user_id")
-  name           String
-  description    String?
-  promptTemplate String   @map("prompt_template")
-  platformSettings Json   @map("platform_settings")
-  tags           String[]
-  isPublic       Boolean  @default(false) @map("is_public")
-  usageCount     Int      @default(0) @map("usage_count")
-  createdAt      DateTime @default(now()) @map("created_at")
-  updatedAt      DateTime @updatedAt @map("updated_at")
+  id               String   @id @default(cuid())
+  userId           String   @map("user_id")
+  name             String
+  description      String?
+  promptTemplate   String   @map("prompt_template")
+  platformSettings Json     @map("platform_settings")
+  tags             String[]
+  isPublic         Boolean  @default(false) @map("is_public")
+  usageCount       Int      @default(0) @map("usage_count")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -457,13 +465,13 @@ model ContentTemplate {
 }
 
 model Dashboard {
-  id            String    @id @default(cuid())
-  userId        String    @map("user_id")
-  widgetConfig  Json      @map("widget_config")
-  layoutConfig  Json      @map("layout_config")
-  lastViewedAt  DateTime  @map("last_viewed_at")
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @updatedAt @map("updated_at")
+  id           String   @id @default(cuid())
+  userId       String   @map("user_id")
+  widgetConfig Json     @map("widget_config")
+  layoutConfig Json     @map("layout_config")
+  lastViewedAt DateTime @map("last_viewed_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -480,37 +488,37 @@ enum ContentLibraryStatus {
 
 // Analytics Models
 model Analytics {
-  id          String    @id @default(cuid())
-  userId      String    @map("user_id")
-  contentId   String    @map("content_id")
-  platform    Platform
-  platformPostId String @map("platform_post_id")
-  metricType  String    @map("metric_type")
-  metricValue Int       @map("metric_value")
-  recordedAt  DateTime  @map("recorded_at")
-  createdAt   DateTime  @default(now()) @map("created_at")
+  id             String   @id @default(cuid())
+  userId         String   @map("user_id")
+  contentId      String   @map("content_id")
+  platform       Platform
+  platformPostId String   @map("platform_post_id")
+  metricType     String   @map("metric_type")
+  metricValue    Int      @map("metric_value")
+  recordedAt     DateTime @map("recorded_at")
+  createdAt      DateTime @default(now()) @map("created_at")
 
   // Relations
-  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   content ContentLibrary @relation(fields: [contentId], references: [id], onDelete: Cascade)
 
   @@map("analytics")
 }
 
 model UserMetrics {
-  id               String    @id @default(cuid())
-  userId           String    @map("user_id")
-  platform         Platform
-  metricDate       DateTime  @map("metric_date") @db.Date
-  followersCount   Int       @map("followers_count")
-  followingCount   Int       @map("following_count")
-  totalViews       BigInt    @map("total_views")
-  totalEngagement  BigInt    @map("total_engagement")
-  postsCount       Int       @map("posts_count")
-  engagementRate   Decimal   @map("engagement_rate")
-  growthRate       Decimal   @map("growth_rate")
-  createdAt        DateTime  @default(now()) @map("created_at")
-  updatedAt        DateTime  @updatedAt @map("updated_at")
+  id              String   @id @default(cuid())
+  userId          String   @map("user_id")
+  platform        Platform
+  metricDate      DateTime @map("metric_date") @db.Date
+  followersCount  Int      @map("followers_count")
+  followingCount  Int      @map("following_count")
+  totalViews      BigInt   @map("total_views")
+  totalEngagement BigInt   @map("total_engagement")
+  postsCount      Int      @map("posts_count")
+  engagementRate  Decimal  @map("engagement_rate")
+  growthRate      Decimal  @map("growth_rate")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -520,21 +528,21 @@ model UserMetrics {
 }
 
 model ContentPerformance {
-  id              String    @id @default(cuid())
-  contentId       String    @map("content_id")
-  platform        Platform
-  views           BigInt    @default(0)
-  likes           Int       @default(0)
-  shares          Int       @default(0)
-  comments        Int       @default(0)
-  saves           Int?      @default(0)
-  clicks          Int?      @default(0)
-  reach           BigInt?
-  impressions     BigInt?
-  engagementRate  Decimal   @map("engagement_rate")
+  id               String   @id @default(cuid())
+  contentId        String   @map("content_id")
+  platform         Platform
+  views            BigInt   @default(0)
+  likes            Int      @default(0)
+  shares           Int      @default(0)
+  comments         Int      @default(0)
+  saves            Int?     @default(0)
+  clicks           Int?     @default(0)
+  reach            BigInt?
+  impressions      BigInt?
+  engagementRate   Decimal  @map("engagement_rate")
   performanceScore Decimal  @map("performance_score")
-  lastUpdatedAt   DateTime  @map("last_updated_at")
-  createdAt       DateTime  @default(now()) @map("created_at")
+  lastUpdatedAt    DateTime @map("last_updated_at")
+  createdAt        DateTime @default(now()) @map("created_at")
 
   // Relations
   content ContentLibrary @relation(fields: [contentId], references: [id], onDelete: Cascade)
@@ -544,18 +552,18 @@ model ContentPerformance {
 }
 
 model AnalyticsReport {
-  id               String    @id @default(cuid())
-  userId           String    @map("user_id")
-  reportName       String    @map("report_name")
-  reportType       String    @map("report_type")
-  dateRangeStart   DateTime  @map("date_range_start") @db.Date
-  dateRangeEnd     DateTime  @map("date_range_end") @db.Date
-  platforms        Platform[]
-  filters          Json
-  reportData       Json      @map("report_data")
-  exportFormat     String    @map("export_format")
-  generatedAt      DateTime  @default(now()) @map("generated_at")
-  expiresAt        DateTime? @map("expires_at")
+  id             String     @id @default(cuid())
+  userId         String     @map("user_id")
+  reportName     String     @map("report_name")
+  reportType     String     @map("report_type")
+  dateRangeStart DateTime   @map("date_range_start") @db.Date
+  dateRangeEnd   DateTime   @map("date_range_end") @db.Date
+  platforms      Platform[]
+  filters        Json
+  reportData     Json       @map("report_data")
+  exportFormat   String     @map("export_format")
+  generatedAt    DateTime   @default(now()) @map("generated_at")
+  expiresAt      DateTime?  @map("expires_at")
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -581,27 +589,27 @@ model PlatformInsights {
 
 // Billing Models
 model Subscription {
-  id                    String             @id @default(cuid())
-  userId                String             @map("user_id")
-  stripeSubscriptionId  String             @unique @map("stripe_subscription_id")
-  stripeCustomerId      String             @map("stripe_customer_id")
-  planId                String             @map("plan_id")
-  status                SubscriptionStatus @default(ACTIVE)
-  currentPeriodStart    DateTime           @map("current_period_start")
-  currentPeriodEnd      DateTime           @map("current_period_end")
-  cancelAtPeriodEnd     Boolean            @default(false) @map("cancel_at_period_end")
-  canceledAt            DateTime?          @map("canceled_at")
-  trialStart            DateTime?          @map("trial_start")
-  trialEnd              DateTime?          @map("trial_end")
-  metadata              Json
-  createdAt             DateTime           @default(now()) @map("created_at")
-  updatedAt             DateTime           @updatedAt @map("updated_at")
+  id                   String             @id @default(cuid())
+  userId               String             @map("user_id")
+  stripeSubscriptionId String             @unique @map("stripe_subscription_id")
+  stripeCustomerId     String             @map("stripe_customer_id")
+  planId               String             @map("plan_id")
+  status               SubscriptionStatus @default(ACTIVE)
+  currentPeriodStart   DateTime           @map("current_period_start")
+  currentPeriodEnd     DateTime           @map("current_period_end")
+  cancelAtPeriodEnd    Boolean            @default(false) @map("cancel_at_period_end")
+  canceledAt           DateTime?          @map("canceled_at")
+  trialStart           DateTime?          @map("trial_start")
+  trialEnd             DateTime?          @map("trial_end")
+  metadata             Json
+  createdAt            DateTime           @default(now()) @map("created_at")
+  updatedAt            DateTime           @updatedAt @map("updated_at")
 
   // Relations
-  user          User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  plan          Plan @relation(fields: [planId], references: [id])
-  usageRecords  UsageRecord[]
-  invoices      Invoice[]
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan         Plan          @relation(fields: [planId], references: [id])
+  usageRecords UsageRecord[]
+  invoices     Invoice[]
 
   @@map("subscriptions")
 }
@@ -629,60 +637,60 @@ model Plan {
 }
 
 model UsageRecord {
-  id                   String    @id @default(cuid())
-  userId               String    @map("user_id")
-  subscriptionId       String    @map("subscription_id")
-  usageType            UsageType @map("usage_type")
-  quantity             Int
-  recordedAt           DateTime  @map("recorded_at")
-  billingPeriodStart   DateTime  @map("billing_period_start")
-  billingPeriodEnd     DateTime  @map("billing_period_end")
-  metadata             Json
-  createdAt            DateTime  @default(now()) @map("created_at")
+  id                 String    @id @default(cuid())
+  userId             String    @map("user_id")
+  subscriptionId     String    @map("subscription_id")
+  usageType          UsageType @map("usage_type")
+  quantity           Int
+  recordedAt         DateTime  @map("recorded_at")
+  billingPeriodStart DateTime  @map("billing_period_start")
+  billingPeriodEnd   DateTime  @map("billing_period_end")
+  metadata           Json
+  createdAt          DateTime  @default(now()) @map("created_at")
 
   // Relations
-  user         User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
 
   @@map("usage_records")
 }
 
 model Invoice {
-  id               String        @id @default(cuid())
-  userId           String        @map("user_id")
-  subscriptionId   String        @map("subscription_id")
-  stripeInvoiceId  String        @unique @map("stripe_invoice_id")
-  number           String
-  status           InvoiceStatus @default(DRAFT)
-  amountTotal      Decimal       @map("amount_total")
-  amountPaid       Decimal       @map("amount_paid")
-  currency         String        @default("usd")
-  invoicePdf       String?       @map("invoice_pdf")
-  dueDate          DateTime?     @map("due_date")
-  paidAt           DateTime?     @map("paid_at")
-  createdAt        DateTime      @default(now()) @map("created_at")
-  updatedAt        DateTime      @updatedAt @map("updated_at")
+  id              String        @id @default(cuid())
+  userId          String        @map("user_id")
+  subscriptionId  String        @map("subscription_id")
+  stripeInvoiceId String        @unique @map("stripe_invoice_id")
+  number          String
+  status          InvoiceStatus @default(DRAFT)
+  amountTotal     Decimal       @map("amount_total")
+  amountPaid      Decimal       @map("amount_paid")
+  currency        String        @default("usd")
+  invoicePdf      String?       @map("invoice_pdf")
+  dueDate         DateTime?     @map("due_date")
+  paidAt          DateTime?     @map("paid_at")
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
 
   // Relations
-  user         User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
 
   @@map("invoices")
 }
 
 model PaymentMethod {
-  id                      String            @id @default(cuid())
-  userId                  String            @map("user_id")
-  stripePaymentMethodId   String            @unique @map("stripe_payment_method_id")
-  type                    PaymentMethodType
-  brand                   String?
-  lastFour                String?           @map("last_four")
-  expMonth                Int?              @map("exp_month")
-  expYear                 Int?              @map("exp_year")
-  isDefault               Boolean           @default(false) @map("is_default")
-  metadata                Json
-  createdAt               DateTime          @default(now()) @map("created_at")
-  updatedAt               DateTime          @updatedAt @map("updated_at")
+  id                    String            @id @default(cuid())
+  userId                String            @map("user_id")
+  stripePaymentMethodId String            @unique @map("stripe_payment_method_id")
+  type                  PaymentMethodType
+  brand                 String?
+  lastFour              String?           @map("last_four")
+  expMonth              Int?              @map("exp_month")
+  expYear               Int?              @map("exp_year")
+  isDefault             Boolean           @default(false) @map("is_default")
+  metadata              Json
+  createdAt             DateTime          @default(now()) @map("created_at")
+  updatedAt             DateTime          @updatedAt @map("updated_at")
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -719,13 +727,13 @@ model AdminUser {
   updatedAt   DateTime  @updatedAt @map("updated_at")
 
   // Relations
-  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userManagement  UserManagement[]
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userManagement     UserManagement[]
   contentModerations ContentModeration[]
-  supportTickets  SupportTicket[]
-  auditLogs       AuditLog[]
-  featureFlags    FeatureFlag[] @relation("CreatedBy")
-  featureFlagUpdates FeatureFlag[] @relation("UpdatedBy")
+  supportTickets     SupportTicket[]
+  auditLogs          AuditLog[]
+  featureFlags       FeatureFlag[]       @relation("CreatedBy")
+  featureFlagUpdates FeatureFlag[]       @relation("UpdatedBy")
 
   @@map("admin_users")
 }
@@ -743,78 +751,80 @@ model UserManagement {
   createdAt   DateTime  @default(now()) @map("created_at")
 
   // Relations
-  user  User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   admin AdminUser @relation(fields: [adminId], references: [id], onDelete: Cascade)
 
   @@map("user_management")
 }
 
 model ContentModeration {
-  id              String    @id @default(cuid())
-  contentId       String    @map("content_id")
-  moderatorId     String    @map("moderator_id")
+  id              String   @id @default(cuid())
+  contentId       String   @map("content_id")
+  moderatorId     String   @map("moderator_id")
   status          String
   reason          String?
-  automated       Boolean   @default(false)
-  confidenceScore Decimal?  @map("confidence_score")
-  reviewNotes     String?   @map("review_notes")
-  reviewedAt      DateTime  @map("reviewed_at")
-  createdAt       DateTime  @default(now()) @map("created_at")
+  automated       Boolean  @default(false)
+  confidenceScore Decimal? @map("confidence_score")
+  reviewNotes     String?  @map("review_notes")
+  reviewedAt      DateTime @map("reviewed_at")
+  createdAt       DateTime @default(now()) @map("created_at")
 
   // Relations
   content   ContentLibrary @relation(fields: [contentId], references: [id], onDelete: Cascade)
-  moderator AdminUser @relation(fields: [moderatorId], references: [id], onDelete: Cascade)
+  moderator AdminUser      @relation(fields: [moderatorId], references: [id], onDelete: Cascade)
+  User      User?          @relation(fields: [userId], references: [id])
+  userId    String?
 
   @@map("content_moderation")
 }
 
 model SystemHealth {
-  id           String    @id @default(cuid())
-  serviceName  String    @map("service_name")
+  id           String   @id @default(cuid())
+  serviceName  String   @map("service_name")
   status       String
-  responseTime Int       @map("response_time")
-  errorRate    Decimal   @map("error_rate")
-  cpuUsage     Decimal?  @map("cpu_usage")
-  memoryUsage  Decimal?  @map("memory_usage")
-  recordedAt   DateTime  @map("recorded_at")
-  createdAt    DateTime  @default(now()) @map("created_at")
+  responseTime Int      @map("response_time")
+  errorRate    Decimal  @map("error_rate")
+  cpuUsage     Decimal? @map("cpu_usage")
+  memoryUsage  Decimal? @map("memory_usage")
+  recordedAt   DateTime @map("recorded_at")
+  createdAt    DateTime @default(now()) @map("created_at")
 
   @@map("system_health")
 }
 
 model AuditLog {
-  id           String    @id @default(cuid())
-  adminId      String?   @map("admin_id")
-  userId       String?   @map("user_id")
+  id           String   @id @default(cuid())
+  adminId      String?  @map("admin_id")
+  userId       String?  @map("user_id")
   action       String
-  resourceType String    @map("resource_type")
-  resourceId   String?   @map("resource_id")
-  oldValues    Json?     @map("old_values")
-  newValues    Json?     @map("new_values")
-  ipAddress    String    @map("ip_address")
-  userAgent    String    @map("user_agent")
-  success      Boolean   @default(true)
-  errorMessage String?   @map("error_message")
-  createdAt    DateTime  @default(now()) @map("created_at")
+  resourceType String   @map("resource_type")
+  resourceId   String?  @map("resource_id")
+  oldValues    Json?    @map("old_values")
+  newValues    Json?    @map("new_values")
+  ipAddress    String   @map("ip_address")
+  userAgent    String   @map("user_agent")
+  success      Boolean  @default(true)
+  errorMessage String?  @map("error_message")
+  createdAt    DateTime @default(now()) @map("created_at")
 
   // Relations
   admin AdminUser? @relation(fields: [adminId], references: [id], onDelete: SetNull)
-  user  User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  user  User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@map("audit_logs")
 }
 
 model FeatureFlag {
-  id                 String    @id @default(cuid())
-  name               String    @unique
-  description        String
-  enabled            Boolean   @default(false)
-  rolloutPercentage  Int       @default(0) @map("rollout_percentage")
-  conditions         Json
-  createdBy          String    @map("created_by")
-  updatedBy          String    @map("updated_by")
-  createdAt          DateTime  @default(now()) @map("created_at")
-  updatedAt          DateTime  @updatedAt @map("updated_at")
+  id                String   @id @default(cuid())
+  name              String   @unique
+  description       String
+  enabled           Boolean  @default(false)
+  rolloutPercentage Int      @default(0) @map("rollout_percentage")
+  conditions        Json
+  createdBy         String   @map("created_by")
+  updatedBy         String   @map("updated_by")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
 
   // Relations
   creator AdminUser @relation("CreatedBy", fields: [createdBy], references: [id])
@@ -840,7 +850,7 @@ model SupportTicket {
   resolvedAt    DateTime? @map("resolved_at")
 
   // Relations
-  user     User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   assignee AdminUser? @relation(fields: [assignedTo], references: [id], onDelete: SetNull)
 
   @@map("support_tickets")

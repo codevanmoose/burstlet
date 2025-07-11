@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc src/index-production.ts --outDir dist --esModuleInterop --skipLibCheck --resolveJsonModule",
-    "start": "node dist/index-production.js",
+    "build": "tsc src/index-simple.ts --outDir dist --esModuleInterop --skipLibCheck --resolveJsonModule",
+    "start": "node dist/index-simple.js",
+    "start:production": "NODE_ENV=production node dist/index-simple.js",
     "start:simple": "node dist/index-simple.js",
     "lint": "eslint src/**/*.ts",
     "type-check": "tsc --noEmit",
@@ -16,6 +17,10 @@
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
+    "db:backup": "tsx src/database/migrations.ts backup",
+    "db:migrate": "tsx src/database/migrations.ts migrate",
+    "deploy": "../scripts/deploy-production.sh",
+    "health-check": "curl -f http://localhost:3001/health || exit 1",
     "mcp:dev": "tsx src/mcp/server.ts",
     "mcp:build": "tsc src/mcp/server.ts --outDir dist/mcp",
     "mcp:start": "node dist/mcp/server.js"

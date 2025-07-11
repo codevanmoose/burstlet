@@ -46,7 +46,10 @@
       "Bash(npm init:*)",
       "Bash(railway login:*)",
       "Bash(railway whoami:*)",
-      "Bash(command:*)"
+      "Bash(command:*)",
+      "Bash(npx prisma:*)",
+      "Bash(cd:*)",
+      "Bash(cd:*)"
     ],
     "deny": []
   }
