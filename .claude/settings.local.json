@@ -25,7 +25,8 @@
       "Bash(vercel list:*)",
       "Bash(cd:*)",
       "Bash(ls:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(vercel:*)"
     ],
     "deny": []
   }
