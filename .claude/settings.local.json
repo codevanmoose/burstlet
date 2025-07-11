@@ -43,7 +43,8 @@
       "Bash(supabase db url:*)",
       "Bash(gh repo view:*)",
       "Bash(gh repo edit:*)",
-      "Bash(npm init:*)"
+      "Bash(npm init:*)",
+      "Bash(railway login:*)"
     ],
     "deny": []
   }
