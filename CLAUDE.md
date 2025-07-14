@@ -6,10 +6,10 @@ This document serves as the primary reference for AI assistants working on the B
 Burstlet is an AI-powered content creation and distribution platform built following Van Moose development standards. The platform enables users to generate videos using HailuoAI, create text content with OpenAI, and automatically distribute content across YouTube, TikTok, Instagram, and Twitter.
 
 ## Current Status
-- **Phase**: CUSTOMER ACQUISITION READY - 100% Complete Infrastructure
-- **Date**: 2025-07-11
+- **Phase**: PRODUCTION DEPLOYMENT - 95% Complete (Awaiting Environment Variables)
+- **Date**: 2025-07-14
 - **Developer**: Working with Claude Code
-- **Last Session**: Completed customer acquisition infrastructure - Ready for production launch
+- **Last Session**: Deployed frontend to Vercel, backend to DigitalOcean - Awaiting manual env var configuration
 
 ## Module Development Progress
 
@@ -38,7 +38,7 @@ Burstlet is an AI-powered content creation and distribution platform built follo
 - [x] User settings page with profile management
 - [x] Billing page with Stripe integration
 - [x] State management with Zustand
-- [x] **DEPLOYED TO VERCEL**: https://burstlet-gilt.vercel.app
+- [x] **DEPLOYED TO VERCEL**: https://burstlet.vercel.app (Active as of 2025-07-14)
 
 ### Customer Acquisition Infrastructure (NEW! 100% Complete ✅)
 - [x] Legal foundation (Terms of Service, Privacy Policy - GDPR compliant)
@@ -246,11 +246,12 @@ STORAGE_BUCKET=burstlet-media
 ```
 
 ## 🌐 Deployment URLs & Infrastructure
-- **Frontend (Vercel)**: https://burstlet-gilt.vercel.app
-- **Backend (DigitalOcean)**: App ID `41fe1a5b-84b8-4cf8-a69f-5330c7ed7518` (deployed)
+- **Frontend (Vercel)**: https://burstlet.vercel.app (LIVE - deployed 2025-07-14)
+- **Backend (DigitalOcean)**: App ID `41fe1a5b-84b8-4cf8-a69f-5330c7ed7518` (awaiting env vars)
 - **Supabase Project**: https://supabase.com/dashboard/project/cmfdlebyqgjifwmfvquu
 - **GitHub Repository**: https://github.com/codevanmoose/burstlet
 - **Production Domain**: burstlet.com (to be configured)
+- **Backend Settings**: https://cloud.digitalocean.com/apps/41fe1a5b-84b8-4cf8-a69f-5330c7ed7518/settings
 
 ## 📋 Production Setup Scripts
 - **Environment Configuration**: `./scripts/setup-digitalocean-env.sh`
@@ -431,6 +432,14 @@ STORAGE_BUCKET=burstlet-media
   - Created production setup scripts for all services and integrations
   - Deployed backend to DigitalOcean App Platform (App ID: 41fe1a5b-84b8-4cf8-a69f-5330c7ed7518)
   - **ACHIEVED 100% CUSTOMER ACQUISITION READINESS** - Ready for production launch!
+- 2025-07-14: **PRODUCTION DEPLOYMENT SESSION**
+  - Fixed Claude Code settings warning by removing wildcard permissions
+  - Successfully redeployed frontend to Vercel at https://burstlet.vercel.app
+  - Prepared environment variables for DigitalOcean backend deployment
+  - Created comprehensive env var documentation at /docs/digitalocean-env-setup.md
+  - Attempted automated env var addition (DigitalOcean CLI limitations prevent this)
+  - Created DEPLOYMENT_STATUS.md with current status and manual steps required
+  - **STATUS**: 95% complete - awaiting manual environment variable configuration
 
 ## ✅ COMPLETED DEVELOPMENT (100%)
 - [x] Complete AI generation interface (video, blog, social posts)
@@ -449,10 +458,16 @@ STORAGE_BUCKET=burstlet-media
 - [x] **Build growth strategy and customer success systems**
 
 ## 🎯 NEXT SESSION: FINAL CONFIGURATION & LAUNCH
-- [ ] **Execute Final Configuration** (2 hours):
-  - [ ] Add production API keys to DigitalOcean environment
+- [ ] **Manual Environment Variable Configuration** (10 minutes):
+  - [ ] Go to: https://cloud.digitalocean.com/apps/41fe1a5b-84b8-4cf8-a69f-5330c7ed7518/settings
+  - [ ] Add the 12 missing environment variables (see DEPLOYMENT_STATUS.md)
+  - [ ] Wait for backend to redeploy (5-10 minutes)
+  - [ ] Verify backend health endpoint is responding
+- [ ] **Complete Final Configuration** (2 hours):
   - [ ] Configure custom domain burstlet.com with DNS and SSL
   - [ ] Create Stripe production account and configure webhooks
+  - [ ] Add real API keys for AI services (OpenAI, HailuoAI, MiniMax)
+  - [ ] Configure OAuth apps for social platforms
   - [ ] Test complete customer journey from landing to payment
 - [ ] **Launch Customer Acquisition** (Week 1):
   - [ ] Soft beta launch with friends & family

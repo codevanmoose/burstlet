@@ -16,16 +16,8 @@
       "Bash(npm run build:*)",
       "Bash(chmod:*)",
       "Bash(cd:*)",
-      "Bash(cd:*)",
-      "Bash(cd:*)",
-      "Bash(cd:*)",
-      "Bash(cd:*)",
-      "Bash(cd:*)",
-      "Bash(cd:*)",
       "Bash(vercel list:*)",
-      "Bash(cd:*)",
       "Bash(ls:*)",
-      "Bash(cd:*)",
       "Bash(vercel:*)",
       "Bash(supabase projects:*)",
       "Bash(supabase link:*)",
@@ -48,10 +40,9 @@
       "Bash(railway whoami:*)",
       "Bash(command:*)",
       "Bash(npx prisma:*)",
-      "Bash(cd:*)",
-      "Bash(cd:*)",
-      "Bash(cd:*)",
-      "Bash(./scripts/final-launch-checklist.sh:*)"
+      "Bash(./scripts/final-launch-checklist.sh:*)",
+      "Bash(pip3 install:*)",
+      "Bash(./scripts/add-env-vars-api.sh:*)"
     ],
     "deny": []
   }

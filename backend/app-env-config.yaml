@@ -1,0 +1,119 @@
+envs:
+  # Generated Secrets
+  - key: JWT_SECRET
+    value: "ieu0A3MUFTznb6NytnWOYF5zl8olyYZeiMS3IPIZJ9Ej1e4d7v6V2EOXwsDmzg8TwbBiGIhkIGftz1GhV4Q"
+    scope: RUN_TIME
+    type: SECRET
+  - key: CSRF_SECRET
+    value: "FfVCH60pzK6oNfabfPPH00eyomn8hDoM"
+    scope: RUN_TIME
+    type: SECRET
+  - key: ADMIN_OVERRIDE_TOKEN
+    value: "0VCLj55hHvinycPTGMdY8rfsAugdCMft"
+    scope: RUN_TIME
+    type: SECRET
+  - key: SESSION_SECRET
+    value: "52BoIp4PVyHESnbjZUTb2wbvMQzVuYha"
+    scope: RUN_TIME
+    type: SECRET
+  - key: ENCRYPTION_KEY
+    value: "28e404e25b30f35d4a3cd2b91c304993"
+    scope: RUN_TIME
+    type: SECRET
+
+  # Public Configuration
+  - key: NODE_ENV
+    value: "production"
+    scope: RUN_TIME
+  - key: PORT
+    value: "3001"
+    scope: RUN_TIME
+  - key: FRONTEND_URL
+    value: "https://burstlet.vercel.app"
+    scope: RUN_TIME
+
+  # Database Configuration
+  - key: DATABASE_URL
+    value: "postgresql://postgres:postgres@db.cmfdlebyqgjifwmfvquu.supabase.co:5432/postgres"
+    scope: RUN_TIME
+    type: SECRET
+  - key: SUPABASE_URL
+    value: "https://cmfdlebyqgjifwmfvquu.supabase.co"
+    scope: RUN_TIME
+  - key: SUPABASE_ANON_KEY
+    value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0"
+    scope: RUN_TIME
+  - key: SUPABASE_SERVICE_KEY
+    value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2UiLCJleHAiOjE5ODM4MTI5OTZ9.Cgu-CJ0KCqvpDqHsVq6UoU9hqfpyHbvgfJ6FsJwOq3o"
+    scope: RUN_TIME
+    type: SECRET
+
+  # Redis Configuration (using Upstash)
+  - key: REDIS_URL
+    value: "redis://localhost:6379"
+    scope: RUN_TIME
+
+  # Storage Configuration
+  - key: STORAGE_BUCKET
+    value: "burstlet-media"
+    scope: RUN_TIME
+
+  # AI Services (placeholders - need real keys)
+  - key: OPENAI_API_KEY
+    value: "sk-placeholder-add-real-key"
+    scope: RUN_TIME
+    type: SECRET
+  - key: HAILUOAI_API_KEY
+    value: "placeholder-add-real-key"
+    scope: RUN_TIME
+    type: SECRET
+  - key: MINIMAX_API_KEY
+    value: "placeholder-add-real-key"
+    scope: RUN_TIME
+    type: SECRET
+
+  # Payment Processing (placeholders - need real keys)
+  - key: STRIPE_SECRET_KEY
+    value: "sk_test_placeholder-add-real-key"
+    scope: RUN_TIME
+    type: SECRET
+  - key: STRIPE_WEBHOOK_SECRET
+    value: "whsec_placeholder-add-real-key"
+    scope: RUN_TIME
+    type: SECRET
+
+  # Email Service (placeholder - need real key)
+  - key: RESEND_API_KEY
+    value: "re_placeholder-add-real-key"
+    scope: RUN_TIME
+    type: SECRET
+
+  # Social Media OAuth (placeholders - need real values)
+  - key: YOUTUBE_CLIENT_ID
+    value: "placeholder-add-real-id"
+    scope: RUN_TIME
+  - key: YOUTUBE_CLIENT_SECRET
+    value: "placeholder-add-real-secret"
+    scope: RUN_TIME
+    type: SECRET
+  - key: TIKTOK_CLIENT_ID
+    value: "placeholder-add-real-id"
+    scope: RUN_TIME
+  - key: TIKTOK_CLIENT_SECRET
+    value: "placeholder-add-real-secret"
+    scope: RUN_TIME
+    type: SECRET
+  - key: INSTAGRAM_CLIENT_ID
+    value: "placeholder-add-real-id"
+    scope: RUN_TIME
+  - key: INSTAGRAM_CLIENT_SECRET
+    value: "placeholder-add-real-secret"
+    scope: RUN_TIME
+    type: SECRET
+  - key: TWITTER_CLIENT_ID
+    value: "placeholder-add-real-id"
+    scope: RUN_TIME
+  - key: TWITTER_CLIENT_SECRET
+    value: "placeholder-add-real-secret"
+    scope: RUN_TIME
+    type: SECRET

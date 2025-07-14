@@ -3,6 +3,7 @@
 [![Built with Van Moose](https://img.shields.io/badge/Built%20with-Van%20Moose-blue)](https://vanmoose.dev)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![Deployment Status](https://img.shields.io/badge/Deployment-95%25%20Complete-yellow)](https://burstlet.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Burstlet is a cutting-edge AI-powered platform that automates content creation and distribution across multiple social media platforms. Generate engaging videos, blog posts, and social media content with AI, then automatically publish to YouTube, TikTok, Instagram, and Twitter.
@@ -148,6 +149,32 @@ burstlet/
 │
 └── docs/                    # Documentation
 ```
+
+## 🚀 Deployment
+
+### Current Status (as of 2025-07-14)
+- **Frontend**: ✅ Live at https://burstlet.vercel.app
+- **Backend**: ⏳ Deployed to DigitalOcean, awaiting environment variables
+- **Database**: ✅ Supabase PostgreSQL configured
+
+### Production Infrastructure
+- **Frontend Hosting**: Vercel
+- **Backend Hosting**: DigitalOcean App Platform
+- **Database**: Supabase PostgreSQL
+- **Storage**: Supabase Storage
+- **Queue**: Redis (to be configured)
+- **CDN**: Vercel Edge Network
+
+### Deployment Commands
+```bash
+# Deploy frontend to Vercel
+cd frontend && vercel --prod
+
+# Deploy backend to DigitalOcean
+cd backend && doctl apps create --spec .do/app.yaml
+```
+
+For detailed deployment instructions, see [DEPLOYMENT_STATUS.md](DEPLOYMENT_STATUS.md).
 
 ## 🧪 Testing
 
