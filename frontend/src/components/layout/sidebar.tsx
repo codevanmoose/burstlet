@@ -49,6 +49,11 @@ const sidebarItems = [
     icon: BarChart3,
   },
   {
+    title: 'Influencers',
+    href: '/dashboard/influencers',
+    icon: Users,
+  },
+  {
     title: 'Calendar',
     href: '/dashboard/calendar',
     icon: Calendar,
