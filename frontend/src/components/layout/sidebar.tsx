@@ -24,6 +24,7 @@ import {
   ChevronRight,
   Loader2,
   Gift,
+  Mail,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
@@ -52,6 +53,11 @@ const sidebarItems = [
     title: 'Influencers',
     href: '/dashboard/influencers',
     icon: Users,
+  },
+  {
+    title: 'Email Campaigns',
+    href: '/dashboard/emails',
+    icon: Mail,
   },
   {
     title: 'Calendar',
