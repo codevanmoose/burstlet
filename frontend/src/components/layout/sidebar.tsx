@@ -25,6 +25,8 @@ import {
   Loader2,
   Gift,
   Mail,
+  TrendingUp,
+  Flask,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
@@ -48,6 +50,16 @@ const sidebarItems = [
     title: 'Analytics',
     href: '/dashboard/analytics',
     icon: BarChart3,
+  },
+  {
+    title: 'Growth',
+    href: '/dashboard/growth',
+    icon: TrendingUp,
+  },
+  {
+    title: 'Experiments',
+    href: '/dashboard/experiments',
+    icon: Flask,
   },
   {
     title: 'Influencers',
