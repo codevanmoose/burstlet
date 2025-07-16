@@ -42,7 +42,14 @@
       "Bash(npx prisma:*)",
       "Bash(./scripts/final-launch-checklist.sh:*)",
       "Bash(pip3 install:*)",
-      "Bash(./scripts/add-env-vars-api.sh:*)"
+      "Bash(./scripts/add-env-vars-api.sh:*)",
+      "Bash(./reinstall-apidog.sh:*)",
+      "Bash(apidog-mcp-server:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(code:*)",
+      "Bash(source:*)",
+      "WebFetch(domain:burstlet.vercel.app)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }

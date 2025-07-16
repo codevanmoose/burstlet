@@ -23,6 +23,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Loader2,
+  Gift,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
@@ -56,6 +57,11 @@ const sidebarItems = [
     title: 'Team',
     href: '/dashboard/team',
     icon: Users,
+  },
+  {
+    title: 'Referrals',
+    href: '/dashboard/referrals',
+    icon: Gift,
   },
   {
     title: 'Billing',
@@ -158,6 +164,23 @@ export function Sidebar() {
             })}
           </TooltipProvider>
         </nav>
+        
+        {/* Referral Promo Banner */}
+        {!sidebarCollapsed && (
+          <div className="border-t p-4">
+            <Link href="/dashboard/referrals">
+              <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg p-3 cursor-pointer hover:opacity-90 transition-opacity">
+                <div className="flex items-center gap-2 mb-1">
+                  <Gift className="h-4 w-4" />
+                  <span className="font-semibold text-sm">Earn Free Months!</span>
+                </div>
+                <p className="text-xs opacity-90">
+                  Refer 3 friends, get 1 month free
+                </p>
+              </div>
+            </Link>
+          </div>
+        )}
         
         {/* Generation Status Footer */}
         {activeGenerations > 0 && !sidebarCollapsed && (

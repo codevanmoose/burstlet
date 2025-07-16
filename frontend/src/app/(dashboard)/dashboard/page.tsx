@@ -2,10 +2,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Overview } from '@/components/dashboard/overview';
 import { RecentContent } from '@/components/dashboard/recent-content';
 import { StatsCards } from '@/components/dashboard/stats-cards';
+import { QuickStartModal } from '@/components/onboarding/quick-start-modal';
 
 export default function DashboardPage() {
   return (
     <>
+      <QuickStartModal />
       <div className="flex items-center justify-between space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
       </div>

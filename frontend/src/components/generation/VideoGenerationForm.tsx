@@ -10,10 +10,14 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-import { AlertCircle, Loader2, Video, Music } from 'lucide-react';
+import { AlertCircle, Loader2, Video, Music, Sparkles, TrendingUp } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useGenerateVideo } from '@/hooks/api/use-generation';
 import { toast } from 'react-hot-toast';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { TemplateSelector } from './template-selector';
+import { ContentTemplate } from '@/data/viral-templates';
+import { Badge } from '@/components/ui/badge';
 
 const videoGenerationSchema = z.object({
   prompt: z.string().min(10, 'Prompt must be at least 10 characters'),
@@ -30,6 +34,8 @@ type VideoGenerationFormData = z.infer<typeof videoGenerationSchema>;
 
 export default function VideoGenerationForm() {
   const [estimatedCost, setEstimatedCost] = useState<number>(0);
+  const [showTemplates, setShowTemplates] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<ContentTemplate | null>(null);
   const { mutate: generateVideo, isPending: isLoading } = useGenerateVideo();
 
   const {
@@ -116,7 +122,50 @@ export default function VideoGenerationForm() {
 
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="prompt">Video Prompt</Label>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="prompt">Video Prompt</Label>
+            <Dialog open={showTemplates} onOpenChange={setShowTemplates}>
+              <DialogTrigger asChild>
+                <Button type="button" variant="outline" size="sm" className="gap-1">
+                  <Sparkles className="h-3 w-3" />
+                  Use Viral Template
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-3xl">
+                <DialogHeader>
+                  <DialogTitle>Choose a Viral Template</DialogTitle>
+                </DialogHeader>
+                <TemplateSelector 
+                  selectedCategory="video"
+                  onSelectTemplate={(template) => {
+                    setSelectedTemplate(template);
+                    setValue('prompt', template.prompt);
+                    if (template.audio?.type === 'music') {
+                      setValue('includeAudio', true);
+                      setValue('audioType', 'music');
+                      setValue('musicStyle', template.audio.style);
+                    }
+                    setShowTemplates(false);
+                    toast.success(`Template "${template.name}" loaded!`);
+                  }}
+                />
+              </DialogContent>
+            </Dialog>
+          </div>
+          {selectedTemplate && (
+            <div className="flex items-center gap-2 p-2 bg-purple-50 rounded-md">
+              <Badge variant="secondary" className="gap-1">
+                <TrendingUp className="h-3 w-3" />
+                {selectedTemplate.viral_score}
+              </Badge>
+              <span className="text-sm text-purple-700">
+                Using: {selectedTemplate.name}
+              </span>
+              <span className="text-xs text-purple-600">
+                ({selectedTemplate.estimated_views} estimated views)
+              </span>
+            </div>
+          )}
           <Textarea
             id="prompt"
             placeholder="Describe the video you want to create..."
