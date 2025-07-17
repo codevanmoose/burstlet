@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "npm ci && tsc src/index-simple.ts --outDir dist --esModuleInterop --skipLibCheck --resolveJsonModule",
+    "build": "npx tsc src/index-simple.ts --outDir dist --esModuleInterop --skipLibCheck --resolveJsonModule",
     "start": "node dist/index-simple.js",
     "start:production": "NODE_ENV=production node dist/index-simple.js",
     "start:simple": "node dist/index-simple.js",
