@@ -7,6 +7,7 @@
     "dev": "tsx watch src/index.ts",
     "build": "npx tsc src/index-simple.ts --outDir dist --esModuleInterop --skipLibCheck --resolveJsonModule",
     "start": "node dist/index-simple.js",
+    "heroku-postbuild": "npm run build",
     "start:production": "NODE_ENV=production node dist/index-simple.js",
     "start:simple": "node dist/index-simple.js",
     "lint": "eslint src/**/*.ts",
