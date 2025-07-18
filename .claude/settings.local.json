@@ -49,7 +49,19 @@
       "Bash(code:*)",
       "Bash(source:*)",
       "WebFetch(domain:burstlet.vercel.app)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(find:*)",
+      "Bash(cd:*)",
+      "Bash(cd:*)",
+      "Bash(cd:*)",
+      "Bash(cd:*)",
+      "Bash(cd:*)",
+      "Bash(git rm:*)",
+      "Bash(cd:*)",
+      "Bash(export BACKEND_URL=https://burstlet-api-wyn4p.ondigitalocean.app)",
+      "Bash(./scripts/deployment-verification.sh:*)",
+      "Bash(cd:*)",
+      "Bash(cd:*)"
     ],
     "deny": []
   }

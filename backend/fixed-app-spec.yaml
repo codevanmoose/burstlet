@@ -1,0 +1,81 @@
+features:
+- buildpack-stack=ubuntu-22
+ingress:
+  rules:
+  - component:
+      name: api
+    match:
+      path:
+        prefix: /
+name: burstlet-api
+region: nyc
+services:
+- build_command: npm ci && npm run build && npm prune --production
+  environment_slug: node-js
+  envs:
+  - key: NODE_ENV
+    scope: RUN_AND_BUILD_TIME
+    value: production
+  - key: PORT
+    scope: RUN_AND_BUILD_TIME
+    value: "3001"
+  - key: DATABASE_URL
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:J2nVWx6PEdVOLh/vvyLNtlTE26P0sCj9:gby+8IqvhyidkBgseresrg==]
+  - key: SUPABASE_URL
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:oE1ePcPhxkgpKcbR9Ov6maUVu22xxc/v:zpj8vHzBywKqx0AyGDN1VQ==]
+  - key: SUPABASE_SERVICE_KEY
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:pBvkf/w2Op4AbS8fnO2lLPuA9gfCCyTM:ms2qdC2ZkIBYfltVFFcC5g==]
+  - key: JWT_SECRET
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:YDUQwMOEw5nh/y+4W9WQY99rQRuhgjOK:qRgJ1AKD2QGZ0rgehvt8hw==]
+  - key: RESEND_API_KEY
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:wuYTS5eg6AGKLcMu9UHGXBgRxiXAKXIh:GbsJFGer8m256TXQslr18Q==]
+  - key: OPENAI_API_KEY
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:wHED/xiLTo9DQKoLKmYL0Zggg5yPnnVx:VlV3n51FuDdyiXzA5p3gvg==]
+  - key: HAILUOAI_API_KEY
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:+tSwhHAExvo6462rsU7VJJebVTqS1HZ7:aGLd9w1O0DUFafQAThEYCA==]
+  - key: MINIMAX_API_KEY
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:ZZfw1nvPyFQs2qx1PVpqjPD0qnEzaHja:yqsunFrgcQloedUgXVnDGA==]
+  - key: STRIPE_SECRET_KEY
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:kHp3bnt41/p/hDulFicMWF9L1lBBhgNM:NY2CcujfDYzdbChWuxiCGQ==]
+  - key: STRIPE_WEBHOOK_SECRET
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:b0OQ6Ijw+BAy092Q6NYNxl+8zxuhPlyB:gcPqjaXWCAW3/BkUnrsR4Q==]
+  - key: REDIS_URL
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:cpjsSoHpi1Kr0bgUJEkA9impwC1h9PSs:DbDh8Dc4qTXyp/TIfvPbzQ==]
+  - key: FRONTEND_URL
+    scope: RUN_AND_BUILD_TIME
+    value: https://burstlet-gilt.vercel.app
+  - key: BACKEND_URL
+    scope: RUN_AND_BUILD_TIME
+    value: https://api.burstlet.com
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: codevanmoose/burstlet
+  http_port: 3001
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  name: api
+  run_command: npm start
+  source_dir: backend

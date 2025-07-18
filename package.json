@@ -40,7 +40,11 @@
     "clean:build": "rm -rf frontend/.next backend/dist",
     "deploy": "npm run build && npm run deploy:frontend && npm run deploy:backend",
     "deploy:frontend": "cd frontend && vercel --prod",
-    "deploy:backend": "cd backend && doctl apps create-deployment"
+    "deploy:backend": "cd backend && doctl apps create-deployment",
+    "production:verify": "./scripts/verify-env-vars.sh",
+    "production:monitor": "./scripts/production-monitor.sh",
+    "production:check": "./scripts/deployment-verification.sh",
+    "production:oauth": "./scripts/setup-oauth-automated.sh"
   },
   "workspaces": [
     "frontend",

@@ -31,10 +31,47 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
+  const requiredEnvVars = [
+    'DATABASE_URL',
+    'SUPABASE_URL',
+    'SUPABASE_SERVICE_KEY',
+    'JWT_SECRET',
+    'CSRF_SECRET',
+    'SESSION_SECRET',
+    'ENCRYPTION_KEY',
+    'FRONTEND_URL',
+    'OPENAI_API_KEY',
+    'HAILUOAI_API_KEY',
+    'MINIMAX_API_KEY',
+    'RESEND_API_KEY',
+    'STRIPE_SECRET_KEY',
+    'STRIPE_WEBHOOK_SECRET'
+  ];
+
+  const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName]);
+  const envStatus = missingEnvVars.length === 0 ? 'complete' : 'incomplete';
+
   res.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
     version: process.env.npm_package_version || '0.1.0',
+    environment: process.env.NODE_ENV || 'development',
+    database: process.env.DATABASE_URL ? 'connected' : 'not_configured',
+    environment_variables: {
+      status: envStatus,
+      total_required: requiredEnvVars.length,
+      configured: requiredEnvVars.length - missingEnvVars.length,
+      missing: missingEnvVars.length,
+      missing_variables: missingEnvVars
+    },
+    services: {
+      frontend_url: process.env.FRONTEND_URL || 'not_configured',
+      openai: process.env.OPENAI_API_KEY ? 'configured' : 'not_configured',
+      hailuoai: process.env.HAILUOAI_API_KEY ? 'configured' : 'not_configured',
+      minimax: process.env.MINIMAX_API_KEY ? 'configured' : 'not_configured',
+      stripe: process.env.STRIPE_SECRET_KEY ? 'configured' : 'not_configured',
+      resend: process.env.RESEND_API_KEY ? 'configured' : 'not_configured'
+    }
   });
 });
 

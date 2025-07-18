@@ -9,8 +9,22 @@ const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const pathname = parsedUrl.pathname;
   
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'https://burstlet.vercel.app');
+  // Set CORS headers - allow multiple origins
+  const allowedOrigins = [
+    'https://burstlet.vercel.app',
+    'https://burstlet.com',
+    'http://localhost:3000'
+  ];
+  
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else if (process.env.FRONTEND_URL) {
+    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', 'https://burstlet.vercel.app');
+  }
+  
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
