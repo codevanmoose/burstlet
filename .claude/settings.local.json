@@ -66,7 +66,8 @@
       "Bash(./scripts/test-backend-env.sh:*)",
       "Bash(psql:*)",
       "Bash(./scripts/production-monitor.sh:*)",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(./scripts/check-deployment.sh:*)"
     ],
     "deny": []
   }

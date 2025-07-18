@@ -78,7 +78,14 @@ const server = http.createServer((req, res) => {
     res.writeHead(200);
     res.end(JSON.stringify({
       status: 'API is operational',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      version: '0.1.1',
+      deployedAt: '2025-07-18T14:03:22Z',
+      env_check: {
+        has_db: !!process.env.DATABASE_URL,
+        has_redis: !!process.env.REDIS_URL,
+        has_supabase: !!process.env.SUPABASE_URL
+      }
     }));
   } else {
     res.writeHead(404);
