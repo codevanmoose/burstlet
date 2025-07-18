@@ -63,7 +63,10 @@
       "Bash(cd:*)",
       "Bash(cd:*)",
       "Bash(./scripts/verify-env-vars.sh:*)",
-      "Bash(./scripts/test-backend-env.sh:*)"
+      "Bash(./scripts/test-backend-env.sh:*)",
+      "Bash(psql:*)",
+      "Bash(./scripts/production-monitor.sh:*)",
+      "Bash(echo:*)"
     ],
     "deny": []
   }

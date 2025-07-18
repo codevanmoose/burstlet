@@ -54,6 +54,13 @@ const server = http.createServer((req, res) => {
         redis: !!process.env.REDIS_URL,
         supabase: !!process.env.SUPABASE_URL,
         frontend_url: process.env.FRONTEND_URL || 'Not configured'
+      },
+      debug: {
+        has_database_url: !!process.env.DATABASE_URL,
+        has_redis_url: !!process.env.REDIS_URL,
+        has_supabase_url: !!process.env.SUPABASE_URL,
+        node_env: process.env.NODE_ENV,
+        port: process.env.PORT
       }
     }));
   } else if (pathname === '/') {

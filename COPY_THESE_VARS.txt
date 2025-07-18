@@ -1,0 +1,47 @@
+COPY THESE ENVIRONMENT VARIABLES TO DIGITALOCEAN
+================================================
+
+Go to: https://cloud.digitalocean.com/apps/41fe1a5b-84b8-4cf8-a69f-5330c7ed7518/settings
+Click: Environment Variables → Edit → Add Variable
+
+ADD THESE 7 CRITICAL VARIABLES FIRST:
+
+1. DATABASE_URL (Mark as SECRET ✓)
+postgresql://postgres:vowpo9-gucJaf-vuvnev@db.cmfdlebyqgjifwmfvquu.supabase.co:5432/postgres
+
+2. SUPABASE_URL
+https://cmfdlebyqgjifwmfvquu.supabase.co
+
+3. SUPABASE_SERVICE_KEY (Mark as SECRET ✓)
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZmRsZWJ5cWdqaWZ3bWZ2cXV1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MjIxNDQ3NiwiZXhwIjoyMDY3NzkwNDc2fQ.1wB7G9_SKoMjzFGbbWKDKBsTo9vusaBq5Xx54Vaxvsc
+
+4. SUPABASE_ANON_KEY
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZmRsZWJ5cWdqaWZ3bWZ2cXV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyMTQ0NzYsImV4cCI6MjA2Nzc5MDQ3Nn0.OKABIiwWKjzbrzi8llZ8h1JVX6MkJTjO0cpayDUdhdU
+
+5. REDIS_URL (Mark as SECRET ✓)
+redis://localhost:6379
+
+6. JWT_SECRET (Mark as SECRET ✓)
+w8K7xM5nP2qR9vT3yU6aE1hF4jG8bL0c
+
+7. FRONTEND_URL
+https://burstlet.vercel.app
+
+THEN ADD THESE AUTHENTICATION VARIABLES:
+
+8. CSRF_SECRET (Mark as SECRET ✓)
+FfVCH60pzK6oNfabfPPH00eyomn8hDoM
+
+9. SESSION_SECRET (Mark as SECRET ✓)
+52BoIp4PVyHESnbjZUTb2wbvMQzVuYha
+
+10. ENCRYPTION_KEY (Mark as SECRET ✓)
+28e404e25b30f35d4a3cd2b91c304993
+
+11. ADMIN_OVERRIDE_TOKEN (Mark as SECRET ✓)
+0VCLj55hHvinycPTGMdY8rfsAugdCMft
+
+12. STORAGE_BUCKET
+burstlet-media
+
+After adding all variables, click SAVE at the bottom!

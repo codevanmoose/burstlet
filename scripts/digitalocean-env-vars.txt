@@ -1,0 +1,76 @@
+# DigitalOcean Environment Variables for Burstlet
+# Copy these to: https://cloud.digitalocean.com/apps/41fe1a5b-84b8-4cf8-a69f-5330c7ed7518/settings
+# Go to Environment Variables tab → Edit → Add each variable
+
+# ===== CRITICAL DATABASE VARIABLES (Mark as SECRET) =====
+
+DATABASE_URL=postgresql://postgres:vowpo9-gucJaf-vuvnev@db.cmfdlebyqgjifwmfvquu.supabase.co:5432/postgres
+
+SUPABASE_URL=https://cmfdlebyqgjifwmfvquu.supabase.co
+
+SUPABASE_SERVICE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZmRsZWJ5cWdqaWZ3bWZ2cXV1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MjIxNDQ3NiwiZXhwIjoyMDY3NzkwNDc2fQ.1wB7G9_SKoMjzFGbbWKDKBsTo9vusaBq5Xx54Vaxvsc
+
+SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZmRsZWJ5cWdqaWZ3bWZ2cXV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyMTQ0NzYsImV4cCI6MjA2Nzc5MDQ3Nn0.OKABIiwWKjzbrzi8llZ8h1JVX6MkJTjO0cpayDUdhdU
+
+REDIS_URL=redis://localhost:6379
+
+# ===== AUTHENTICATION SECRETS (Mark as SECRET) =====
+
+JWT_SECRET=w8K7xM5nP2qR9vT3yU6aE1hF4jG8bL0c
+
+CSRF_SECRET=FfVCH60pzK6oNfabfPPH00eyomn8hDoM
+
+SESSION_SECRET=52BoIp4PVyHESnbjZUTb2wbvMQzVuYha
+
+ENCRYPTION_KEY=28e404e25b30f35d4a3cd2b91c304993
+
+ADMIN_OVERRIDE_TOKEN=0VCLj55hHvinycPTGMdY8rfsAugdCMft
+
+# ===== PUBLIC CONFIGURATION (Regular variables, NOT encrypted) =====
+
+NODE_ENV=production
+
+PORT=3001
+
+FRONTEND_URL=https://burstlet.vercel.app
+
+STORAGE_BUCKET=burstlet-media
+
+# ===== AI SERVICE KEYS (Mark as SECRET) - Add your actual keys =====
+
+OPENAI_API_KEY=sk-YOUR_OPENAI_KEY_HERE
+
+HAILUOAI_API_KEY=YOUR_HAILUOAI_KEY_HERE
+
+MINIMAX_API_KEY=YOUR_MINIMAX_KEY_HERE
+
+# ===== PAYMENT PROCESSING (Mark as SECRET) - Add your actual keys =====
+
+STRIPE_SECRET_KEY=sk_test_YOUR_STRIPE_KEY_HERE
+
+STRIPE_WEBHOOK_SECRET=whsec_YOUR_WEBHOOK_SECRET_HERE
+
+# ===== EMAIL SERVICE (Mark as SECRET) - Add your actual key =====
+
+RESEND_API_KEY=re_YOUR_RESEND_KEY_HERE
+
+# ===== SOCIAL MEDIA OAUTH (Regular for IDs, SECRET for secrets) =====
+
+YOUTUBE_CLIENT_ID=placeholder-add-real-id
+YOUTUBE_CLIENT_SECRET=placeholder-add-real-secret
+
+TIKTOK_CLIENT_ID=placeholder-add-real-id
+TIKTOK_CLIENT_SECRET=placeholder-add-real-secret
+
+INSTAGRAM_CLIENT_ID=placeholder-add-real-id
+INSTAGRAM_CLIENT_SECRET=placeholder-add-real-secret
+
+TWITTER_CLIENT_ID=placeholder-add-real-id
+TWITTER_CLIENT_SECRET=placeholder-add-real-secret
+
+# ===== INSTRUCTIONS =====
+# 1. Replace YOUR_PASSWORD_HERE with your Supabase database password
+# 2. Add your actual API keys for AI services, Stripe, and Resend
+# 3. OAuth credentials can remain as placeholders initially
+# 4. For Redis: Use redis://localhost:6379 for now, or get Redis Cloud URL
+# 5. Mark all items labeled "SECRET" as encrypted in DigitalOcean
