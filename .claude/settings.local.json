@@ -61,7 +61,9 @@
       "Bash(export BACKEND_URL=https://burstlet-api-wyn4p.ondigitalocean.app)",
       "Bash(./scripts/deployment-verification.sh:*)",
       "Bash(cd:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(./scripts/verify-env-vars.sh:*)",
+      "Bash(./scripts/test-backend-env.sh:*)"
     ],
     "deny": []
   }

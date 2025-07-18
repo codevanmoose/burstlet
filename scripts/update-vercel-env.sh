@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Update Vercel Environment Variables
+
+echo "📋 Vercel Environment Variables Update"
+echo "====================================="
+echo ""
+echo "You need to manually update these in Vercel Dashboard:"
+echo ""
+echo "1. Go to: https://vercel.com/your-username/burstlet/settings/environment-variables"
+echo "2. Add or update these variables:"
+echo ""
+echo "NEXT_PUBLIC_API_URL = https://burstlet-api-wyn4p.ondigitalocean.app/api"
+echo "NEXT_PUBLIC_APP_URL = https://burstlet.vercel.app"
+echo ""
+echo "NEXTAUTH_URL = https://burstlet.vercel.app"
+echo "NEXTAUTH_SECRET = [generate a secure random string]"
+echo ""
+echo "3. Redeploy the frontend after saving"
+echo ""
+echo "🔗 Quick Links:"
+echo "- Vercel Dashboard: https://vercel.com/dashboard"
+echo "- Frontend URL: https://burstlet.vercel.app"
+echo "- Backend Health: https://burstlet-api-wyn4p.ondigitalocean.app/health"
+echo ""
