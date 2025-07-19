@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "npx tsc src/index-simple.ts --outDir dist --esModuleInterop --skipLibCheck --resolveJsonModule",
-    "start": "node src/server.js",
-    "start:minimal": "node src/minimal-server.js",
+    "start": "node src/minimal-server.js",
+    "start:express": "node src/server.js",
     "start:ts": "node dist/index-simple.js",
     "heroku-postbuild": "echo 'No build needed for JavaScript server'",
     "start:production": "NODE_ENV=production node dist/index-simple.js",

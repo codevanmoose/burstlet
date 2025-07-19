@@ -47,8 +47,8 @@ const server = http.createServer((req, res) => {
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
       environment: process.env.NODE_ENV || 'development',
-      version: '0.1.0',
-      message: 'Minimal server running without Express',
+      version: '0.2.0',
+      message: 'Minimal server with auth endpoints',
       services: {
         database: !!process.env.DATABASE_URL,
         redis: !!process.env.REDIS_URL,
@@ -67,11 +67,15 @@ const server = http.createServer((req, res) => {
     res.writeHead(200);
     res.end(JSON.stringify({
       name: 'Burstlet API',
-      version: '0.1.0',
+      version: '0.2.0',
       status: 'operational',
       endpoints: {
         health: '/health',
-        api: '/api/*'
+        api: '/api/*',
+        auth: {
+          register: '/api/auth/register',
+          login: '/api/auth/login'
+        }
       }
     }));
   } else if (pathname === '/api/status') {
@@ -79,7 +83,7 @@ const server = http.createServer((req, res) => {
     res.end(JSON.stringify({
       status: 'API is operational',
       timestamp: new Date().toISOString(),
-      version: '0.1.1',
+      version: '0.2.0',
       deployedAt: '2025-07-18T14:03:22Z',
       env_check: {
         has_db: !!process.env.DATABASE_URL,
@@ -87,6 +91,82 @@ const server = http.createServer((req, res) => {
         has_supabase: !!process.env.SUPABASE_URL
       }
     }));
+  } else if (pathname === '/api/auth/register' && req.method === 'POST') {
+    // Handle registration
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    req.on('end', () => {
+      try {
+        const data = JSON.parse(body);
+        const { email, password, name } = data;
+        
+        if (!email || !password) {
+          res.writeHead(400);
+          res.end(JSON.stringify({
+            error: 'Email and password are required'
+          }));
+          return;
+        }
+        
+        res.writeHead(200);
+        res.end(JSON.stringify({
+          success: true,
+          message: 'Registration endpoint working',
+          data: {
+            user: {
+              email,
+              name,
+              id: 'test_' + Date.now()
+            }
+          }
+        }));
+      } catch (error) {
+        res.writeHead(400);
+        res.end(JSON.stringify({
+          error: 'Invalid JSON in request body'
+        }));
+      }
+    });
+  } else if (pathname === '/api/auth/login' && req.method === 'POST') {
+    // Handle login
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    req.on('end', () => {
+      try {
+        const data = JSON.parse(body);
+        const { email, password } = data;
+        
+        if (!email || !password) {
+          res.writeHead(400);
+          res.end(JSON.stringify({
+            error: 'Email and password are required'
+          }));
+          return;
+        }
+        
+        res.writeHead(200);
+        res.end(JSON.stringify({
+          success: true,
+          message: 'Login endpoint working',
+          data: {
+            token: 'test_jwt_token_' + Date.now(),
+            user: {
+              email,
+              id: 'test_user_id'
+            }
+          }
+        }));
+      } catch (error) {
+        res.writeHead(400);
+        res.end(JSON.stringify({
+          error: 'Invalid JSON in request body'
+        }));
+      }
+    });
   } else if (pathname === '/api/debug/env') {
     // Debug endpoint to check environment variables
     const envKeys = Object.keys(process.env).filter(key => 

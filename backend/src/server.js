@@ -1,9 +1,19 @@
-// Simple Express server for DigitalOcean deployment
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const compression = require('compression');
-const rateLimit = require('express-rate-limit');
+// Hybrid server that gracefully falls back to minimal if Express isn't available
+let express, cors, helmet, compression, rateLimit;
+
+try {
+  express = require('express');
+  cors = require('cors');
+  helmet = require('helmet');
+  compression = require('compression');
+  rateLimit = require('express-rate-limit');
+} catch (error) {
+  console.log('Express dependencies not available, falling back to minimal server');
+  // Fall back to minimal server
+  require('./minimal-server.js');
+  return;
+}
+
 const { createServer } = require('http');
 
 // Create Express app
