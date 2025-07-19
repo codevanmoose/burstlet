@@ -4,6 +4,15 @@ const url = require('url');
 
 console.log('🚀 Starting Burstlet Backend...');
 
+// Debug: Check if node_modules exists
+const fs = require('fs');
+const path = require('path');
+
+console.log('📁 Current directory:', process.cwd());
+console.log('📦 node_modules exists:', fs.existsSync(path.join(process.cwd(), 'node_modules')));
+console.log('📦 Express module check:', fs.existsSync(path.join(process.cwd(), 'node_modules/express')));
+console.log('📦 Prisma module check:', fs.existsSync(path.join(process.cwd(), 'node_modules/@prisma/client')));
+
 // Try to load Express and dependencies
 let expressApp = null;
 let isExpressAvailable = false;

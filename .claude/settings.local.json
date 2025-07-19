@@ -73,7 +73,8 @@
       "Bash(./scripts/wait-for-deploy.sh:*)",
       "Bash(./scripts/setup-oauth-automated.sh:*)",
       "Bash(./scripts/test-frontend-backend.sh:*)",
-      "Bash(./scripts/check-api-keys.sh:*)"
+      "Bash(./scripts/check-api-keys.sh:*)",
+      "Bash(cd:*)"
     ],
     "deny": []
   }
