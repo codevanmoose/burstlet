@@ -69,7 +69,9 @@
       "Bash(echo:*)",
       "Bash(./scripts/check-deployment.sh:*)",
       "Bash(./scripts/do-env-setup.sh:*)",
-      "Bash(./scripts/check-missing-vars.sh:*)"
+      "Bash(./scripts/check-missing-vars.sh:*)",
+      "Bash(./scripts/wait-for-deploy.sh:*)",
+      "Bash(./scripts/setup-oauth-automated.sh:*)"
     ],
     "deny": []
   }

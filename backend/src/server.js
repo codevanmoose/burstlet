@@ -26,13 +26,31 @@ app.use(helmet({
   },
 }));
 
-// CORS configuration
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://burstlet.vercel.app',
+// CORS configuration with multiple origins
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      process.env.FRONTEND_URL || 'https://burstlet.vercel.app',
+      'https://burstlet.vercel.app',
+      'https://burstlet.com',
+      'http://localhost:3000'
+    ];
+    
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+};
+
+app.use(cors(corsOptions));
 
 // Compression
 app.use(compression());
@@ -95,8 +113,69 @@ app.get('/', (req, res) => {
 app.get('/api/status', (req, res) => {
   res.json({
     status: 'API is operational',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    version: '0.2.0',
+    server: 'express'
   });
+});
+
+// Authentication endpoints (temporary - for testing)
+app.post('/api/auth/register', async (req, res) => {
+  try {
+    const { email, password, name } = req.body;
+    
+    if (!email || !password) {
+      return res.status(400).json({
+        error: 'Email and password are required'
+      });
+    }
+    
+    // For now, just return success to test the connection
+    res.json({
+      success: true,
+      message: 'Registration endpoint working',
+      data: {
+        user: {
+          email,
+          name,
+          id: 'test_' + Date.now()
+        }
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message || 'Registration failed'
+    });
+  }
+});
+
+app.post('/api/auth/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    
+    if (!email || !password) {
+      return res.status(400).json({
+        error: 'Email and password are required'
+      });
+    }
+    
+    // For now, just return success to test the connection
+    res.json({
+      success: true,
+      message: 'Login endpoint working',
+      data: {
+        token: 'test_jwt_token_' + Date.now(),
+        user: {
+          email,
+          id: 'test_user_id'
+        }
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message || 'Login failed'
+    });
+  }
 });
 
 // 404 handler
