@@ -13,6 +13,7 @@ const server = http.createServer((req, res) => {
   const allowedOrigins = [
     'https://burstlet.vercel.app',
     'https://burstlet.com',
+    'https://www.burstlet.com',
     'http://localhost:3000'
   ];
   
