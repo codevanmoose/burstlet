@@ -15,7 +15,7 @@ NC='\033[0m' # No Color
 
 # URLs - will be updated once backend is deployed
 FRONTEND_URL="https://burstlet.vercel.app"
-BACKEND_URL="https://burstlet-backend-url.ondigitalocean.app"  # Update after deployment
+BACKEND_URL="https://burstlet-api-wyn4p.ondigitalocean.app"
 
 # Function to check URL status
 check_url() {
@@ -25,7 +25,7 @@ check_url() {
     echo -n "Checking $service_name... "
     
     # Check if URL is accessible
-    if curl -s --head --request GET "$url" | grep "200 OK" > /dev/null; then
+    if curl -s --head --request GET "$url" | grep "HTTP/2 200\|200 OK" > /dev/null; then
         echo -e "${GREEN}✅ ONLINE${NC}"
         return 0
     else

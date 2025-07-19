@@ -87,6 +87,25 @@ const server = http.createServer((req, res) => {
         has_supabase: !!process.env.SUPABASE_URL
       }
     }));
+  } else if (pathname === '/api/debug/env') {
+    // Debug endpoint to check environment variables
+    const envKeys = Object.keys(process.env).filter(key => 
+      !key.includes('npm_') && 
+      !key.includes('YARN_') && 
+      !key.includes('PATH') &&
+      !key.includes('HOME') &&
+      !key.includes('USER')
+    );
+    res.writeHead(200);
+    res.end(JSON.stringify({
+      count: envKeys.length,
+      keys: envKeys,
+      hasDatabase: 'DATABASE_URL' in process.env,
+      hasRedis: 'REDIS_URL' in process.env,
+      hasSupabase: 'SUPABASE_URL' in process.env,
+      nodeEnv: process.env.NODE_ENV,
+      port: process.env.PORT
+    }));
   } else {
     res.writeHead(404);
     res.end(JSON.stringify({

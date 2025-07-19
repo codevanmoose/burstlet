@@ -15,7 +15,7 @@ NC='\033[0m' # No Color
 
 # Configuration
 FRONTEND_URL="https://burstlet.vercel.app"
-BACKEND_URL="https://burstlet-backend-url.ondigitalocean.app"  # Update after deployment
+BACKEND_URL="https://burstlet-api-wyn4p.ondigitalocean.app"
 DIGITALOCEAN_APP_ID="41fe1a5b-84b8-4cf8-a69f-5330c7ed7518"
 
 # Function to display OAuth provider instructions

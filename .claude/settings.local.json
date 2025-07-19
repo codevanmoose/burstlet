@@ -67,7 +67,9 @@
       "Bash(psql:*)",
       "Bash(./scripts/production-monitor.sh:*)",
       "Bash(echo:*)",
-      "Bash(./scripts/check-deployment.sh:*)"
+      "Bash(./scripts/check-deployment.sh:*)",
+      "Bash(./scripts/do-env-setup.sh:*)",
+      "Bash(./scripts/check-missing-vars.sh:*)"
     ],
     "deny": []
   }
